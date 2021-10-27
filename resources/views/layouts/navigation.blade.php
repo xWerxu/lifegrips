@@ -12,12 +12,21 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('homepage')" :active="request()->routeIs('dashboard')">
+                        {{ __('Strona Główna') }}
                     </x-nav-link>
                 </div>
             </div>
 
+            @guest
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <x-nav-link :href="route('login')">
+                    {{ __('Zaloguj się') }}
+                </x-nav-link>
+            </div>
+            @endguest
+
+            @auth
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
@@ -47,6 +56,7 @@
                     </x-slot>
                 </x-dropdown>
             </div>
+            @endauth
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
@@ -68,6 +78,7 @@
             </x-responsive-nav-link>
         </div>
 
+        @auth
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
@@ -88,5 +99,6 @@
                 </form>
             </div>
         </div>
+        @endauth
     </div>
 </nav>
