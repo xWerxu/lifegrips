@@ -63,6 +63,11 @@
 
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <li>
+                                        <a class="dropdown-item" href="{{ route('user.profile') }}">
+                                        {{ __('Mój profil') }}
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{ __('Wyloguj') }}
