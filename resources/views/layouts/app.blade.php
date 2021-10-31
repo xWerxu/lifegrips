@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/categories.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -37,6 +39,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Kategorie
+                            </a>
+                            <div class="dropdown-menu" style="width: 300px" aria-labelledby="navbarDropdownMenuLink">
+                                <ul class="list-group list-group-root well">
+                                    @foreach ($categories as $category)
+                                        <li class="list-group-item">{{ $category->name }}</li>
+                                        <ul class="list-group">
+                                        @foreach ($category->childrenCategories as $childCategory)
+                                            @include('child_category', ['child_category' => $childCategory])
+                                        @endforeach
+                                        </ul>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

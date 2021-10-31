@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Category::whereNull('parent_id')
+        ->with('childrenCategories')
+        ->get();
+        return view('homepage', [
+            'categories' => $categories,
+            'user' => Auth::user()
+        ]);
     }
 }
