@@ -49,6 +49,7 @@
                         <br>
                         <div class="w-50 mx-auto">
                             <button class="btn btn-warning float-start" id="edit-button" type="button" onclick="startForm()">Edytuj</button>
+                            <button class="btn btn-danger visually-hidden float-start" id="cancel-button" type="button" onclick="cancelForm()">Anuluj</button>
                             <button class="btn btn-primary visually-hidden float-end" id="save-button" type="submit" id="save-butotn" name="save_changes">Zapisz</button>
                         </div>
                     </form>
@@ -61,18 +62,44 @@
 </div>
 
 <script>
+    var first_name, last_name, phone_number, city, address, postal_code;
+
     function startForm(){
+        first_name = document.getElementById("first_name").value;
+        last_name = document.getElementById("last_name").value;
+        phone_number = document.getElementById("phone_number").value;
+        city = document.getElementById("city").value;
+        address = document.getElementById("address").value;
+        postal_code = document.getElementById("postal_code").value;
+
         let fieldset = document.getElementById("form-fieldset");
         let editButton = document.getElementById("edit-button");
         let saveButton = document.getElementById("save-button");
+        let cancelButton = document.getElementById("cancel-button");
+
         fieldset.disabled = false;
-        editButton.classList.remove("btn-warning");
-        editButton.classList.add("btn-danger");
-        editButton.innerHTML = "Anuluj";
-
+        editButton.classList.add("visually-hidden");
         saveButton.classList.remove("visually-hidden");
+        cancelButton.classList.remove("visually-hidden");
+    }
 
-        console.log(fieldset);
+    function cancelForm(){
+        document.getElementById("first_name").value = first_name;
+        document.getElementById("last_name").value = last_name;
+        document.getElementById("phone_number").value = phone_number;
+        document.getElementById("city").value = city;
+        document.getElementById("address").value = address;
+        document.getElementById("postal_code").value = postal_code;
+
+        let fieldset = document.getElementById("form-fieldset");
+        let editButton = document.getElementById("edit-button");
+        let saveButton = document.getElementById("save-button");
+        let cancelButton = document.getElementById("cancel-button");
+
+        fieldset.disabled = true;
+        editButton.classList.remove("visually-hidden");
+        saveButton.classList.add("visually-hidden");
+        cancelButton.classList.add("visually-hidden");
     }
 </script>
 
