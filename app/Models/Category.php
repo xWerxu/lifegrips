@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $table = 'categories';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'category_id';
 
     public $timestamps = false;
 
@@ -26,5 +26,9 @@ class Category extends Model
 
     public function childrenCategories(){
         return $this->hasMany(Category::class, 'parent_id', 'category_id')->with('categories');
+    }
+
+    public function products(){
+        return $this->belongsToMany(Product::class);
     }
 }

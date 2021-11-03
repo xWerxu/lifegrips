@@ -3,6 +3,7 @@
 @section('content')
     
 <div class="container">
+    {{ dump($test) }}
     <h1 class="display-3">Witaj {{ $user->email }}</h1>
     <h1 class="display-6">Oto Twój profil:</h1>
     <br>

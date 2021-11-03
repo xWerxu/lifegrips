@@ -40,16 +40,6 @@
             @auth
             <div>
                 Jesteś zalogowany jak coś
-                <ul class="list-group list-group-root well">
-                    @foreach ($categories as $category)
-                        <li class="list-group-item">{{ $category->name }}</li>
-                        <ul class="list-group">
-                        @foreach ($category->childrenCategories as $childCategory)
-                            @include('child_category', ['child_category' => $childCategory])
-                        @endforeach
-                        </ul>
-                    @endforeach
-                </ul>
             </div>
             @endauth
         </div>

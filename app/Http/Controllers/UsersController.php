@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 class UsersController extends Controller
 {
     public function index(){
         $user = Auth::user();
+        $product = Product::find(1);
+        $test = $product->images()->get();
         
         return view('user.profile', [
             'user' => $user,
-            'test' => 'eo'
+            'test' => $test
         ]);
     }
 
