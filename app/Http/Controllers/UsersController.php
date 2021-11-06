@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,9 @@ class UsersController extends Controller
         $user = Auth::user();
         $product = Product::find(1);
         $test = $product->images()->get();
+
+        $category = Category::find(1);
+        $test = $category->products()->get();
         
         return view('user.profile', [
             'user' => $user,

@@ -39,9 +39,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <a class="nav-link" href="{{ route('shop') }}">Sklep</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Kategorie
                             </a>
                             <div class="dropdown-menu" style="width: 300px" aria-labelledby="navbarDropdownMenuLink">
                                 <ul class="list-group list-group-root well">
