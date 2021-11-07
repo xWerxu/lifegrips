@@ -81,6 +81,14 @@
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if( Auth::user()->role == 'admin' )
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('admin.panel') }}">
+                                            {{ __('Zarządzaj') }}
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    @endif
                                     <li>
                                         <a class="dropdown-item" href="{{ route('user.profile') }}">
                                         {{ __('Mój profil') }}

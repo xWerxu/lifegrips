@@ -23,6 +23,8 @@ require __DIR__.'/user.php';
 
 require __DIR__.'/shop.php';
 
+require __DIR__.'/admin/admin.php';
+
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

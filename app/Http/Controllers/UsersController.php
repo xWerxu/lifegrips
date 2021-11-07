@@ -12,15 +12,9 @@ class UsersController extends Controller
 {
     public function index(){
         $user = Auth::user();
-        $product = Product::find(1);
-        $test = $product->images()->get();
-
-        $category = Category::find(1);
-        $test = $category->products()->get();
         
         return view('user.profile', [
-            'user' => $user,
-            'test' => $test
+            'user' => $user
         ]);
     }
 
