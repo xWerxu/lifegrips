@@ -21,4 +21,9 @@
         top: var(--topNavbarHeight);
         height: calc(100% - var(--topNavbarHeight));
     }
+
+    .main-admin{
+        margin-top : var(--topNavbarHeight) !important;
+        margin-left: var(--offcanvas-width);
+    }
 }

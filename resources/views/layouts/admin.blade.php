@@ -23,7 +23,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon"></span>
@@ -74,7 +74,7 @@
                       </div>
                   </li>
                   <li>
-                      <a href="#" class="nav-link px-3 active">
+                      <a href="{{ route('admin.category.index') }}" class="nav-link px-3 active">
                           <span class="me-2"><i class="bi bi-tags"></i></span>
                           <span>Kategorie</span>
                       </a>
@@ -89,4 +89,8 @@
           </nav>
         </div>
       </div>
+
+      <main class="main-admin mt-3 p-3">
+        @yield('content')
+    </main>
 </body>
