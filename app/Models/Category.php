@@ -20,6 +20,13 @@ class Category extends Model
         'parent_id'
     ];
 
+    public function hasChildren(){
+        if ($this->categories()->exists()){
+            return true;
+        }
+        return false;
+    }
+
     public function parent(){
         return $this->belongsTo(Category::class, 'parent_id', 'category_id')->first();
     }

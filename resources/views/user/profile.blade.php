@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col">
             <div class="card text-center">
-                <div class="card-body">
+                <div class="card-bod    y">
                     <h5 class="card-title">Dane kontaktowe i adres dostawy</h5>
                     <hr>
                     <form method="POST" action="{{ route('user.update') }}" class="justify-content-md-center">

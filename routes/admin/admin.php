@@ -16,3 +16,11 @@ Route::get('/admin/kategorie', [CategoryController::class, 'adminIndex'])
 Route::post('/admin/kategorie/nowa', [CategoryController::class, 'create'])
                 ->middleware('admin')
                 ->name('admin.category.create');
+
+Route::delete('/admin/kategorie/', [CategoryController::class, 'delete'])
+                ->middleware('admin')
+                ->name('admin.category.delete');
+
+Route::put('/admin/kategorie/edytuj', [CategoryController::class, 'update'])
+                ->middleware('admin')
+                ->name('admin.category.update');
