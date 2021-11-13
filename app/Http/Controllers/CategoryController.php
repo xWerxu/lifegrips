@@ -18,7 +18,7 @@ class CategoryController extends Controller
     }
 
     public function adminIndex(){
-        $categories = Category::all(); $mains = Category::whereNull('parent_id')->get(); $mains = Category::whereNull('parent_id')->get();
+        $categories = Category::orderBy('parent_id')->get();
 
         $mains = DB::table('categories')->whereNull('parent_id')->get();
 

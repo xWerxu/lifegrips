@@ -16,22 +16,12 @@ class Product extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'name',
         'description',
-        'manufacturer_id',
-        'main_image_id',
-        'price'
+        'available',
+        'main_variant'
     ];
 
     public function categories(){
         return $this->belongsToMany(Category::class);
-    }
-
-    public function images(){
-        return $this->belongsToMany(Image::class, 'products_images', 'product_id', 'image_id');
-    }
-
-    public function main_image(){
-        return $this->hasOne(Image::class, 'main_image_id', 'image_id');
     }
 }
