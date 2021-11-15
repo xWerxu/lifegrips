@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', [AdminController::class, 'index'])
@@ -24,3 +24,11 @@ Route::delete('/admin/kategorie/', [CategoryController::class, 'delete'])
 Route::put('/admin/kategorie/edytuj', [CategoryController::class, 'update'])
                 ->middleware('admin')
                 ->name('admin.category.update');
+
+Route::get('/admin/produkty/nowy', [ProductController::class, 'create'])
+                ->middleware('admin')
+                ->name('admin.product.create');
+
+Route::post('/admin/produkty/nowy', [ProductController::class, 'postCreate'])
+                ->middleware('admin')
+                ->name('admin.product.create');
