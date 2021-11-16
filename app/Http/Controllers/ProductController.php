@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
+use Illuminate\Support\Str;
 use App\Models\Variant;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ProductPostRequest;
 
 class ProductController extends Controller
 {
@@ -20,8 +24,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function postCreate(Request $request){
-        // $post = $request->all();
+    public function postCreate(ProductPostRequest $request){
 
         // $product_validation = new Product;
         // $validation = Validator::make($details,$product_validation->setRules());
@@ -31,22 +34,17 @@ class ProductController extends Controller
         $filename        = '';
 
         if (isset($request->main)) {
-            $file            = $request->file('main');
-            $destinationPath = public_path().'/obrazy/produkty';
-            $filename        = now() . '_' . $file->extension();
-            $file->move($destinationPath, $filename);
-
-            $image = new Image();
-            $image->path = $destinationPath . "/" . $filename;
-            $image->save();
+            $main_file            = $request->file('main');
+           
+            $filename = Storage::disk('public')->put('produkty', $main_file);
         }
 
-        // if($validation->fails())
+        // if($validation->fails()) 
         //     return Redirect::to('/add_product')->withInput()->withErrors($validation);
 
         // else
         // {
-            $product = new Product;
+            $product = new Product();
             $variant = new Variant();
             
             $product->description = $request->description;
@@ -60,24 +58,46 @@ class ProductController extends Controller
 
             $variant->name = $request->name;
             $variant->price = $request->price;
-            if(isset($image)){
-                $variant->main_image_id = $image->image_id;
+            if(isset($main_file)){
+                if (Storage::disk('public')->exists($filename)){
+                    $_POST['coque'] = 'cock';
+                    $variant->main_image = Storage::url($filename);
+                }else{
+                    $_POST['coque'] = 'asfdf';
+                }
             }
 
             $product->available = true;
+            $product->main_variant = $variant->id;
 
             $product->save();
+
+            $parents = [];
+
+            foreach ($request->categories as $category_id){
+                $category = Category::find($category_id);
+                if (!in_array($category->parent_id, $parents)){
+                    array_push($parents, $category->parent_id);
+                }
+            }
+
+            $categories = array_merge($parents, $request->categories);
+
+            $product->categories()->attach($categories);
 
             $variant->product_id = $product->product_id;
             $variant->on_stock = $request->on_stock;
 
             $variant->save();
 
+            $product->main_variant = $variant->id;
+            $product->save();   
+
         // }
 
 
         return view('admin.products.index', [
-            'post' => $image
+            'post' => $parents
         ]);
     }
 }

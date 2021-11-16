@@ -20,7 +20,7 @@ class Variant extends Model
         'name',
         'on_stock',
         'available',
-        'main_image_id',
+        'main_image',
         'price'
     ];
 
