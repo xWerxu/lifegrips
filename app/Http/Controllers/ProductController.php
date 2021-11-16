@@ -35,65 +35,66 @@ class ProductController extends Controller
 
         if (isset($request->main)) {
             $main_file            = $request->file('main');
-           
             $filename = Storage::disk('public')->put('produkty', $main_file);
         }
 
-        // if($validation->fails()) 
-        //     return Redirect::to('/add_product')->withInput()->withErrors($validation);
-
-        // else
-        // {
-            $product = new Product();
-            $variant = new Variant();
-            
-            $product->description = $request->description;
-            if(isset($request->available)){
-                $product->available = true;
-                $variant->available = true;
-            }else{
-                $product->available  = false;
-                $variant->available = false;
-            }
-
-            $variant->name = $request->name;
-            $variant->price = $request->price;
-            if(isset($main_file)){
-                if (Storage::disk('public')->exists($filename)){
-                    $_POST['coque'] = 'cock';
-                    $variant->main_image = Storage::url($filename);
-                }else{
-                    $_POST['coque'] = 'asfdf';
-                }
-            }
-
+        $product = new Product();
+        $variant = new Variant();
+        
+        $product->description = $request->description;
+        if(isset($request->available)){
             $product->available = true;
-            $product->main_variant = $variant->id;
+            $variant->available = true;
+        }else{
+            $product->available  = false;
+            $variant->available = false;
+        }
 
-            $product->save();
-
-            $parents = [];
-
-            foreach ($request->categories as $category_id){
-                $category = Category::find($category_id);
-                if (!in_array($category->parent_id, $parents)){
-                    array_push($parents, $category->parent_id);
-                }
+        $variant->name = $request->name;
+        $variant->price = $request->price;
+        if(isset($main_file)){
+            if (Storage::disk('public')->exists($filename)){
+                $variant->main_image = Storage::url($filename);
             }
+        }
 
-            $categories = array_merge($parents, $request->categories);
+        $product->available = true;
+        $product->main_variant = $variant->id;
 
-            $product->categories()->attach($categories);
+        $product->save();
 
-            $variant->product_id = $product->product_id;
-            $variant->on_stock = $request->on_stock;
+        $parents = [];
 
-            $variant->save();
+        foreach ($request->categories as $category_id){
+            $category = Category::find($category_id);
+            if (!in_array($category->parent_id, $parents)){
+                array_push($parents, $category->parent_id);
+            }
+        }
 
-            $product->main_variant = $variant->id;
-            $product->save();   
+        $categories = array_merge($parents, $request->categories);
 
-        // }
+        $product->categories()->attach($categories);
+
+        $variant->product_id = $product->product_id;
+        $variant->on_stock = $request->on_stock;
+
+        $variant->save();
+
+        if(isset($request->adds)){
+            foreach ($request->adds as $add){
+                $file = $add;
+                $add_file = Storage::disk('public')->put('produkty', $file);
+                $image = new Image();
+                $image->path = Storage::url($add_file);
+                $image->variant_id = $variant->id;
+
+                $image->save();
+            }
+        }
+
+        $product->main_variant = $variant->id;
+        $product->save();   
 
 
         return view('admin.products.index', [

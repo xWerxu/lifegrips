@@ -3,8 +3,14 @@
 @section('content')
     <div class="contianer">
         @foreach ($products as $product)
-        {{ $product->product_idproduct->mainVariant->main_image product->mainVariant->main_image  }}
-        <img src="{{ $product->mainVariant->main_image }}">
+        @php
+            $variant = $product->mainVariant
+        @endphp
+            <img class="img-thumbnail" style="width: 200px" src="{{ $variant->main_image }}">
+        @foreach ($variant->images as $image)
+            <img class="img-thumbnail" style="width: 100px" src="{{ $image->path }}">
+        @endforeach
+        <br>
         @endforeach
     </div>
 @endsection

@@ -27,4 +27,8 @@ class Variant extends Model
     public function mainImage(){
         return $this->hasOne(Image::class);
     }
+
+    public function images(){
+        return $this->hasMany(Image::class, 'variant_id', 'id');
+    }
 }
