@@ -25,6 +25,10 @@ Route::put('/admin/kategorie/edytuj', [CategoryController::class, 'update'])
                 ->middleware('admin')
                 ->name('admin.category.update');
 
+Route::get('/admin/produkty', [ProductController::class, 'adminIndex'])
+                ->middleware('admin')
+                ->name('admin.product.index');
+
 Route::get('/admin/produkty/nowy', [ProductController::class, 'create'])
                 ->middleware('admin')
                 ->name('admin.product.create');

@@ -16,6 +16,14 @@ use App\Http\Requests\ProductPostRequest;
 
 class ProductController extends Controller
 {
+    public function adminIndex(){
+        $products = Product::all();
+
+        return view('admin.products.index', [
+            'products' => $products
+        ]);
+    }
+
     public function create(Request $request){
         $categories = Category::whereNull('parent_id')->get();
 
@@ -97,8 +105,6 @@ class ProductController extends Controller
         $product->save();   
 
 
-        return view('admin.products.index', [
-            'post' => $parents
-        ]);
+        return redirect()->route('admin.product.index');
     }
 }

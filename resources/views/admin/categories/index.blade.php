@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1><i class="bi bi-list-ul me-2"></i>Kategorie</h1>
+<h1><i class="bi bi-list-ul mt-0 mt-md-5"></i>Kategorie</h1>
 <hr class="divider">
 @if (session('error'))
       <div class="alert alert-danger">
@@ -13,7 +13,7 @@
       </div>
 @endif
 <div class="row">
-  <div class="col-4">
+  <div class="col-lg-4 col-sm-12">
     <div class="text-center">
       <h1 class="fw-light">Dodaj kategorię</h1>
       <br>
@@ -32,7 +32,7 @@
       </form>
     </div>
   </div>
-  <div class="col-8">
+  <div class="col-lg-8 col-sm-12">
     <table class="table">
       <thead>
         <tr>
