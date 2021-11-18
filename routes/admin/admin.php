@@ -36,3 +36,7 @@ Route::get('/admin/produkty/nowy', [ProductController::class, 'create'])
 Route::post('/admin/produkty/nowy', [ProductController::class, 'postCreate'])
                 ->middleware('admin')
                 ->name('admin.product.create');
+
+Route::delete('/admin/produkty/usun', [ProductController::class, 'delete'])
+                ->middleware('admin')
+                ->name('admin.product.delete');

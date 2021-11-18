@@ -28,4 +28,8 @@ class Product extends Model
     public function mainVariant(){
         return $this->hasOne(Variant::class, 'id', 'main_variant');
     }
+
+    public function variants(){
+        return $this->hasMany(Variant::class, 'product_id');
+    }
 }

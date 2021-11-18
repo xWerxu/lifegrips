@@ -42,7 +42,12 @@
                 <div class="btn-group">
                     <button class="btn btn-secondary"><i class="me-2 bi bi-search"></i>Szczegóły</button>
                     <button class="btn btn-warning"><i class="me-2 bi bi-pencil"></i>Edytuj</button>
-                    <button class="btn btn-danger"><i class="me-2 bi bi-trash2"></i>Usuń</button>
+                    <form method="POST" action="{{ route('admin.product.delete') }}" onsubmit="return confirm('Czy na pewno chcesz usunąć produkt {{ $variant->name }} i wszystkie jego warianty?');">
+                        @csrf
+                        @method('delete')
+                        <input type="hidden" name="product_id" value="{{ $product->product_id }}">
+                        <button type="submit" class="btn btn-danger"><i class="me-2 bi bi-trash2"></i>Usuń</button>
+                    </form>
                 </div>
             </td>
         </tr>
