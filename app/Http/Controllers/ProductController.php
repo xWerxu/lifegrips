@@ -49,7 +49,7 @@ class ProductController extends Controller
             foreach ($variant->images as $image){
                 $array = explode('produkty/', $image->path);
                 if(Storage::disk('public')->exists('produkty/' . $array[1])){
-                    if (Storage::disk('public')->delete('produkty/' . $array[1])){
+                    if (Storage::disk('public')->delete('produdecorationkty/' . $array[1])){
                         $test .= "\n GICIOR" . $image->path;
                     }else{
                         $test .= "\n " . $image->path;
@@ -61,10 +61,15 @@ class ProductController extends Controller
 
         $product->forceDelete();
 
-        return view('admin.panel', [
-            'test' => $test
+        return redirect()->route('admin.product.index')->with('success', 'Pomyślnie usunięto produkt i jego warianty!');
+    }
+
+    public function edit($id){
+        $product = Product::find($id);
+
+        return view('admin.products.edit', [
+            'product' => $product
         ]);
-        // return redirect()->route('admin.product.index')->with('success', 'Pomyślnie usunięto produkt i jego warianty!');
     }
 
     public function postCreate(ProductPostRequest $request){

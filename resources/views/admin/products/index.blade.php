@@ -36,12 +36,11 @@
             <td class="align-middle"><img class="m-0" src="{{ $variant->main_image }}" style="height: 100px; width: 100px;"></td>
             <th class="align-middle" scope="row">{{ $product->product_id }}</th>
             <td class="align-middle"> {{ $variant->name }} </td>
-            <td class="align-middle"> {{ $product->description }} </td>
+            <td class="align-middle custom-box"> {{ $product->description }} </td>
             <td class="align-middle"> {{ $variant->price }} zł </td>
             <td class="align-middle">
                 <div class="btn-group">
-                    <button class="btn btn-secondary"><i class="me-2 bi bi-search"></i>Szczegóły</button>
-                    <button class="btn btn-warning"><i class="me-2 bi bi-pencil"></i>Edytuj</button>
+                    <a href="{{ route('admin.product.edit', ['id' => $product->product_id]) }}" class="btn btn-warning"><i class="me-2 bi bi-pencil"></i>Edytuj</a>
                     <form method="POST" action="{{ route('admin.product.delete') }}" onsubmit="return confirm('Czy na pewno chcesz usunąć produkt {{ $variant->name }} i wszystkie jego warianty?');">
                         @csrf
                         @method('delete')
