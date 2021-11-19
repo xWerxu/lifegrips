@@ -19,7 +19,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th style="height: 110px; width:110px;">Zdjęcie</th>
+            <th>Zdjęcie</th>
             <th scope="col">ID</th>
             <th scope="col">Nazwa</th>
             <th scope="col">Opis</th>

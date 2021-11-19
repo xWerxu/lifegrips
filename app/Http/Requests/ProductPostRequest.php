@@ -25,12 +25,28 @@ class ProductPostRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255|unique:variants',
-            'main' => 'required|image|mimes:png,jpg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
-            'adds.*' => 'image|mimes:png,jpg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'main' => 'required|image|mimes:png,jpg|max:2048|dimensions:min_width=600,min_height=600,max_width=1000,max_height=1000',
+            'adds.*' => 'image|mimes:png,jpg|max:2048|dimensions:min_width=600,min_height=600,max_width=1000,max_height=1000',
             'description' => 'max:4096',
             'categories' => 'required',
-            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/|min:0',
             'on_stock' => 'required|numeric|min:0'
+        ];
+    }
+
+    public function messages(){
+        return [
+            '*.required' => 'To pole jest wymagane',
+            'description.max' => 'Opis może zawierać maksymalnie 4096 znaków',
+            'name.max' => 'Maksymalna długość to 255 znaków',
+            'name.unique' => 'Nazwa pierwszego wariantu nie może być taka sama jak nazwa innych wariantów w sklepie',
+            '*.image' => 'Plik musi być zdjęciem',
+            '*.mimes' => 'Obsługiwane formaty to: jpg i png',
+            '*.max' => 'Maksymalny rozmiar pliku to 2048KB',
+            '*.dimensions' => 'Obraz musi mieć wymiary min. 600x600px, max. 1000x1000px',
+            'price.regex' => 'Format ceny to: xx.xx',
+            'on_stock.numeric' => 'Wartość musi być liczbą',
+            '*.min' => 'Wartość musi być nieujemna',
         ];
     }
 }

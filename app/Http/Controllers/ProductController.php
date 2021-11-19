@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductEditRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Image;
@@ -66,10 +67,51 @@ class ProductController extends Controller
 
     public function edit($id){
         $product = Product::find($id);
+        $categories = Category::whereNull('parent_id')->get();
+
+        $selected_cats = $product->categories;
+        $selected = [];
+        foreach ($selected_cats as $cat){
+            array_push($selected, $cat->category_id);
+        }
 
         return view('admin.products.edit', [
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories,
+            'selected' => $selected
         ]);
+    }
+
+    public function postEdit(ProductEditRequest $request){
+        $product = Product::find($request->product_id);
+
+        $product->description = $request->description;
+        $product->main_variant = $request->main_variant;
+        if (isset($request->available)){
+            $product->available = true;
+        }else{
+            $product->available = false;
+        }
+
+        $parents = [];
+
+        foreach ($request->categories as $category_id){
+            $category = Category::find($category_id);
+            if (!in_array($category->parent_id, $parents)){
+                array_push($parents, $category->parent_id);
+            }
+        }
+
+        $variant = Variant::find($request->main_variant);
+
+        $categories = array_merge($parents, $request->categories);
+
+        $product->categories()->sync($categories);
+
+        $product->save();
+
+
+        return redirect()->route('admin.product.index')->with('success', 'Pomyślnie edytowano produkt ' . $variant->name . '!');
     }
 
     public function postCreate(ProductPostRequest $request){

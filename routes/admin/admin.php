@@ -44,3 +44,7 @@ Route::delete('/admin/produkty/usun', [ProductController::class, 'delete'])
 Route::get('/admin/produkty/{id}', [ProductController::class, 'edit'])
                 ->middleware('admin')
                 ->name('admin.product.edit');
+
+Route::put('/admin/produkty/edytuj', [ProductController::class, 'postEdit'])
+                ->middleware('admin')
+                ->name('admin.product.update');
