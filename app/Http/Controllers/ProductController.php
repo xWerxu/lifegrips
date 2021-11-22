@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductPostRequest;
+use Intervention\Image\Facades\Image as Imagee;
 
 class ProductController extends Controller
 {
@@ -111,7 +112,10 @@ class ProductController extends Controller
 
         if (isset($request->main)) {
             $main_file            = $request->file('main');
-            $filename = Storage::disk('public')->put('produkty', $main_file);
+            $name = $main_file->hashName();
+            $image_resized = Imagee::make($main_file->getRealPath());
+            $image_resized->resize(600, 600)->encode('png', 90);
+            Storage::disk('public')->put('produkty/' . $name, $image_resized->encoded);
         }
 
         $product = new Product();
@@ -129,9 +133,10 @@ class ProductController extends Controller
         $variant->name = $request->name;
         $variant->price = $request->price;
         if(isset($main_file)){
-            if (Storage::disk('public')->exists($filename)){
-                $variant->main_image = Storage::url($filename);
-            }
+            // if (Storage::disk('public')->exists($filename)){
+            //     $variant->main_image = Storage::url($filename);
+            // }
+            $variant->main_image = Storage::url('produkty/' . $name);
         }
 
         $product->available = true;
@@ -158,11 +163,14 @@ class ProductController extends Controller
         $variant->save();
 
         if(isset($request->adds)){
-            foreach ($request->adds as $add){
-                $file = $add;
-                $add_file = Storage::disk('public')->put('produkty', $file);
+            foreach ($request->file('adds') as $add){
+                $name = $add->hashName();
+                $image_resized = Imagee::make($add->getRealPath());
+                $image_resized->resize(600, 600)->encode('png', 90);
+                Storage::disk('public')->put('produkty/' . $name, $image_resized->encoded);
+                
                 $image = new Image();
-                $image->path = Storage::url($add_file);
+                $image->path = Storage::url('produkty/' . $name);
                 $image->variant_id = $variant->id;
 
                 $image->save();

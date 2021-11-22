@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Variant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as Imagee;
 
 class VariantController extends Controller
 {
@@ -25,14 +26,18 @@ class VariantController extends Controller
         $variant->product_id = $request->product_id;
 
         $main_file = $request->file('main');
-        $filename = Storage::disk('public')->put('produkty', $main_file);
+        $name = $main_file->hashName();
+        $image_resized = Imagee::make($main_file->getRealPath());
+        $image_resized->resize(600, 600)->encode('png', 90);
+        Storage::disk('public')->put('produkty/' . $name, $image_resized->encoded);
+        if(isset($main_file)){
+            $variant->main_image = Storage::url('produkty/' . $name);
+        }
 
         $variant->name = $request->name;
         $variant->on_stock = $request->on_stock;
         $variant->price = $request->price;
-        if (Storage::disk('public')->exists($filename)){
-            $variant->main_image = Storage::url($filename);
-        }
+
         if (isset($request->available)){
             $variant->available = true;
         }else{
@@ -42,11 +47,14 @@ class VariantController extends Controller
         $variant->save();
         
         if(isset($request->adds)){
-            foreach ($request->adds as $add){
-                $file = $add;
-                $add_file = Storage::disk('public')->put('produkty', $file);
+            foreach ($request->file('adds') as $add){
+                $name = $add->hashName();
+                $image_resized = Imagee::make($add->getRealPath());
+                $image_resized->resize(600, 600)->encode('png', 90);
+                Storage::disk('public')->put('produkty/' . $name, $image_resized->encoded);
+                
                 $image = new Image();
-                $image->path = Storage::url($add_file);
+                $image->path = Storage::url('produkty/' . $name);
                 $image->variant_id = $variant->id;
 
                 $image->save();
@@ -85,7 +93,7 @@ class VariantController extends Controller
 
         $variant->forceDelete();
 
-        return redirect()->route('admin.product.edit', ['id' => $product_id])->with('success', $test);
+        return redirect()->route('admin.product.edit', ['id' => $product_id])->with('success', 'Pomyslnie usunięto wariant' . $variant->name . '!');
     }
 
     public function edit($id){
@@ -103,11 +111,20 @@ class VariantController extends Controller
         $variant->product_id = $request->product_id;
 
         if(isset($request->main)){
-            $main_file = $request->file('main');
-            $filename = Storage::disk('public')->put('produkty', $main_file);
-            if (Storage::disk('public')->exists($filename)){
-                $variant->main_image = Storage::url($filename);
+            $array = explode('produkty/', $variant->main_image);
+
+            if (Storage::disk('public')->exists('produkty/' . $array[1])){
+                Storage::disk('public')->delete('produkty/' . $array[1]);
             }
+
+
+
+            $main_file = $request->file('main');
+            $name = $main_file->hashName();
+            $image_resized = Imagee::make($main_file->getRealPath());
+            $image_resized->resize(600, 600)->encode('png', 90);
+            Storage::disk('public')->put('produkty/' . $name, $image_resized->encoded);
+            $variant->main_image = Storage::url('produkty/' . $name);
         }
 
         $variant->name = $request->name;
@@ -122,11 +139,14 @@ class VariantController extends Controller
         $variant->save();
         
         if(isset($request->adds)){
-            foreach ($request->adds as $add){
-                $file = $add;
-                $add_file = Storage::disk('public')->put('produkty', $file);
+            foreach ($request->file('adds') as $add){
+                $name = $add->hashName();
+                $image_resized = Imagee::make($add->getRealPath());
+                $image_resized->resize(600, 600)->encode('png', 90);
+                Storage::disk('public')->put('produkty/' . $name, $image_resized->encoded);
+                
                 $image = new Image();
-                $image->path = Storage::url($add_file);
+                $image->path = Storage::url('produkty/' . $name);
                 $image->variant_id = $variant->id;
 
                 $image->save();
@@ -146,6 +166,6 @@ class VariantController extends Controller
             }
         }
 
-        return redirect()->route('admin.variant.edit', ['id' => $request->variant_id]);
+        return redirect()->route('admin.product.edit', ['id' => $request->product_id]);
     }
 }
