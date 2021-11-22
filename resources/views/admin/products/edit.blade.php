@@ -9,16 +9,20 @@
 </div>
 <br><br>
 <hr class="d-block">
+@if (session('success'))
+      <div class="alert alert-success">
+        {{ session('success') }}
+      </div>
+@endif
 <form action="{{ route('admin.product.update') }}" method="POST">
     @csrf
-    @method('PUT')
     <input type="hidden" name="product_id" value="{{ $product->product_id }}">
     <div class="card">
         <div class="row">
             <div class="col-lg-6 col-sm-12">
                 <div class="container">
                     <h2 class="mt-3 float-start">Główny wariant</h2>
-                    <a href="{{route('admin.product.create')}}" class="mt-3 float-end btn btn-primary"><i class="me-2 bi bi-plus-circle"></i>Dodaj wariant</a>
+                    <a href="{{route('admin.variant.create', ['product_id' => $product->product_id])}}" class="mt-3 float-end btn btn-primary"><i class="me-2 bi bi-plus-circle"></i>Dodaj wariant</a>
                     <br><br>
                     <hr>
                     @error('main_variant')
@@ -53,8 +57,13 @@
                                 <td class="align-middle">{{ $variant->on_stock }} szt.</td>
                                 <td class="align-middle text-center">
                                     <div class="btn-group">
-                                        <button class="btn btn-warning">Edytuj</button>
-                                        <button class="btn btn-danger">Usuń</button>
+                                        <a href="{{ route('admin.variant.edit', ['id' => $variant->id]) }}" class="btn btn-warning"><i class="me-2 bi bi-pencil"></i>Edytuj</a>
+                                        <form method="POST" action="{{ route('admin.variant.delete') }}">
+                                            <input type="hidden" name="variant_id" value="{{ $variant->id }}" onsubmit="return confirm('Czy na pewno chcesz usunąć wariant {{ $variant->name }}?');">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger"><i class="me-2 bi bi-trash2"></i>Usuń</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -96,6 +105,7 @@
                 </div>
             </div>
         </div>
+        @method('PUT')
         <button class="btn btn-primary mt-5">Zapisz zmiany</button>
     </div>
 </form>

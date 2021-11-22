@@ -35,26 +35,19 @@ class ProductController extends Controller
 
     public function delete(Request $request){
         $product = Product::find($request->product_id);
-        $test = "";
 
         foreach ($product->variants as $variant){
             $array = explode('produkty/', $variant->main_image);
             if(Storage::disk('public')->exists('produkty/' . $array[1])){
                 if (Storage::disk('public')->delete('produkty/' . $array[1])){
-                    $test .= "\n GICIOR " . $variant->main_image;
-                }else{
-                    $test .= "\n " . $variant->main_image;
+                    Storage::disk('public')->delete('produkty/' . $array[1]);
                 }
             }
 
             foreach ($variant->images as $image){
                 $array = explode('produkty/', $image->path);
                 if(Storage::disk('public')->exists('produkty/' . $array[1])){
-                    if (Storage::disk('public')->delete('produdecorationkty/' . $array[1])){
-                        $test .= "\n GICIOR" . $image->path;
-                    }else{
-                        $test .= "\n " . $image->path;
-                    }
+                    Storage::disk('public')->delete('produkty/' . $array[1]);
                 }
             }
 

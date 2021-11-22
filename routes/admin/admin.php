@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\VariantController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', [AdminController::class, 'index'])
@@ -48,3 +49,23 @@ Route::get('/admin/produkty/{id}', [ProductController::class, 'edit'])
 Route::put('/admin/produkty/edytuj', [ProductController::class, 'postEdit'])
                 ->middleware('admin')
                 ->name('admin.product.update');
+
+Route::get('/admin/warianty/{product_id}/dodaj', [VariantController::class, 'create'])
+                ->middleware('admin')
+                ->name('admin.variant.create');
+
+Route::post('/admin/warianty/nowy', [VariantController::class, 'postCreate'])
+                ->middleware('admin')
+                ->name('admin.variant.postCreate');
+
+Route::delete('/admin/warianty/usun', [VariantController::class, 'delete'])
+                ->middleware('admin')
+                ->name('admin.variant.delete');
+
+Route::get('/admin/warianty/edytuj/{id}', [VariantController::class, 'edit'])
+                ->middleware('admin')
+                ->name('admin.variant.edit');
+
+Route::put('/admin/warianty/edytuj', [VariantController::class, 'postEdit'])
+                ->middleware('admin')
+                ->name('admin.variant.update');

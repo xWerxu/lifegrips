@@ -2,5 +2,5 @@
 
 @section('content')
     jestes adminem jak cos
-    {{dd($test)}}
+    {{dump($test)}}
 @endsection

@@ -24,10 +24,6 @@ class Variant extends Model
         'price'
     ];
 
-    public function mainImage(){
-        return $this->hasOne(Image::class);
-    }
-
     public function images(){
         return $this->hasMany(Image::class, 'variant_id', 'id');
     }
