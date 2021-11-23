@@ -49,6 +49,8 @@ class ProductController extends Controller
     public function delete(Request $request){
         $product = Product::find($request->product_id);
 
+        $product->categories()->detach();
+
         foreach ($product->variants as $variant){
             $array = explode('produkty/', $variant->main_image);
             if(Storage::disk('public')->exists('produkty/' . $array[1])){
