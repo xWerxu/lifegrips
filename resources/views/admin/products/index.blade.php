@@ -16,7 +16,42 @@
         {{ session('success') }}
       </div>
 @endif
-<table class="table">
+@if ($pages > 1)
+<ul class="pagination float-start">
+    @if ($current_page > 1)
+    <li class="page-item" href="#" aria-label="Poprzednia">
+        <a href="{{ url()->current() }}?page={{ $current_page - 1 }}&limit={{ $current_limit }}" class="page-link">Poprzednia</a>
+    </li>
+    @endif
+    @for ($i=1; $i<=$pages; $i++)
+        <li class="page-item
+        @if ($i == $current_page)
+            active
+        @endif
+        "
+        >
+            <a href="{{ url()->current() }}?page={{ $i }}&limit={{ $current_limit }}" class="page-link">{{ $i }}</a>
+        </li>
+    @endfor
+    @if ($current_page < $pages)
+    <li class="page-item" aria-label="Poprzednia">
+        <a href="{{ url()->current() }}?page={{ $current_page + 1 }}&limit={{ $current_limit }}" class="page-link">Następna</a>
+    </li>
+    @endif
+</ul>
+@endif
+<ul class="pagination float-end">
+    @foreach ($limits as $limit)
+        <li class="page-item
+        @if ($limit == $current_limit)
+            active
+        @endif
+        ">
+            <a href="{{ url()->current() }}?page={{ $current_page }}&limit={{ $limit }}" class="page-link">{{ $limit }}</a>
+        </li>
+    @endforeach
+</ul>
+<table class="table" id="table">
     <thead>
         <tr>
             <th>Zdjęcie</th>

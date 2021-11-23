@@ -18,11 +18,23 @@ use Intervention\Image\Facades\Image as Imagee;
 
 class ProductController extends Controller
 {
-    public function adminIndex(){
-        $products = Product::all();
+    public function adminIndex(Request $request){
+        $page = $request->has('page') ? $request->get('page') : 1;
+        $limit = $request->has('limit') ? $request->get('limit') : 10;
+
+        $max = Product::count();
+        $pages = ceil($max/$limit);
+        $limits = [10, 25, 50];
+
+        $products = Product::all()->skip(($page - 1) * $limit)  ->take($limit);
 
         return view('admin.products.index', [
-            'products' => $products
+            'products' => $products,
+            'max' => $max,
+            'pages' => $pages,
+            'current_page' => $page,
+            'current_limit' => $limit,
+            'limits' => $limits
         ]);
     }
 
