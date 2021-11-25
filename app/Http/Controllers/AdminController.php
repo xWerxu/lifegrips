@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index (){
         $user = Auth()->user();
-        $cart = $user->cart->items;
+        $cart = $user->cart;
 
         return view('admin.panel', [
             'test' => $cart
