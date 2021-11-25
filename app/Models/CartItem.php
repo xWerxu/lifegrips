@@ -20,4 +20,8 @@ class CartItem extends Model
         'cart_id',
         'quantity'
     ];
+
+    public function variant(){
+        return $this->hasOne(Variant::class, 'id', 'variant_id');
+    }
 }

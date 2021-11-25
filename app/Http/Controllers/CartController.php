@@ -42,7 +42,7 @@ class CartController extends Controller
 
             $cart->refresh();
 
-            return response($cart->items->count());
+            return json_encode($cart);
             
 
         }else{
@@ -66,7 +66,34 @@ class CartController extends Controller
 
             $request->session()->put('cart', $cart);
 
-            return response($count);
+            return json_encode($cart);
         }
+    }
+
+    public function removeItem(Request $request){
+        if (Auth::check()){
+            $item = CartItem::find($request->item_id);
+            $item->forceDelete();
+        }else{
+            $cart = $request->session()->get('cart');
+            if (array_key_exists($request->item_id, $cart)){
+                unset($cart[$request->item_id]);
+            }
+            $request->session()->put('cart', $cart);
+        }
+
+        return redirect()->route('cart');
+    }
+
+    public function index(Request $request){
+        if(Auth::check()){
+            $cart = Auth::user()->cart;
+        }else{
+            $cart = $request->session()->get('cart');
+        }
+
+        return view('shop.cart', [
+            'cart' => $cart
+        ]);
     }
 }

@@ -9,3 +9,9 @@ Route::get('/sklep', [CategoryController::class, 'index'])
 
 Route::get('sklep/add-to-cart', [CartController::class, 'addToCart'])
                 ->name('add-to-cart');
+
+Route::get('/koszyk', [CartController::class, 'index'])
+                ->name('cart');
+
+Route::delete('/koszyk/remove-item', [CartController::class, 'removeItem'])
+                ->name('remove-from-cart');
