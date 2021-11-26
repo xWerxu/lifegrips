@@ -15,3 +15,6 @@ Route::get('/koszyk', [CartController::class, 'index'])
 
 Route::delete('/koszyk/remove-item', [CartController::class, 'removeItem'])
                 ->name('remove-from-cart');
+
+Route::post('/koszyk', [CartController::class, 'updateCart'])
+                ->name('update-cart');

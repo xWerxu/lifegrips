@@ -10,11 +10,9 @@
             @foreach ($variant->images as $image)
                 <img class="img-thumbnail" style="width: 100px" src="{{ $image->path }}">
             @endforeach
-            <form id="form" action="{{ route('add-to-cart') }}" method="GET">
-                <input id="quantity" type="hidden" name="quantity" value="1">
-                <input id="variant" type="hidden" name="variant_id" value="{{ $variant->id }}">
-                <button onclick="addToCart()" type="submit" class="btn btn-primary">Zamów</button>
-            </form>
+            <button data-id="{{ $variant->id }}" 
+                {{-- Data quantity jest tylko do testowania tutaj --}}
+                data-quantity="1"  class="btn btn-primary add-item">Zamów</button>
         <br>
         @endforeach
     </div>
@@ -26,21 +24,22 @@
     dodawać się nie da, tylko na stronie samego produktu bo to też ma sens i będzie dużo łatwiejsze do zrobienia.
     --}}
 <script>
-    function addToCart(){
-        $('#form').on('submit', function(e){
-            e.preventDefault();
-            $.ajax({
-                url: "{{route('add-to-cart')}}",
-                method: 'GET',
-                data: {
-                    quantity: $('#quantity').val(),
-                    variant_id: $('#variant').val(),
-                }
-            }).done(function(data){
-                console.log(data);
-            });
+    $(".add-item").click(function(){
+        var id = $(this).data("id");
+        var quantity = $(this).data("quantity");
+        var token = $("meta[name='csrf-token']").attr("content");
+
+        $.ajax({
+            url: "{{ route('add-to-cart') }}",
+            data: {
+                "variant_id": id,
+                "_token": token,
+                "quantity": quantity,
+            }
+        }).done(function(data){
+            console.log(data);
         });
-    }
+    });
 </script>    
 @endsection
 

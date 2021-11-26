@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+    /**
+     * Do formularza:
+     *  -variant_id -> id variantu
+     *  -quantity -> ilość produktów
+     */
     public function addToCart(Request $request){
         $variant = Variant::findOrFail($request->variant_id);
 
@@ -70,14 +75,43 @@ class CartController extends Controller
         }
     }
 
+    /**
+     * Do formularza:
+     *  - item_id
+     *      -> w przypadku zalogowanego klienta cartItem->id
+     *      -> niezalogowany: klucz arraya zawierającego informacje o itemie
+     *        
+     */
     public function removeItem(Request $request){
         if (Auth::check()){
             $item = CartItem::find($request->item_id);
             $item->forceDelete();
+            $cart = Auth::user()->cart;
         }else{
             $cart = $request->session()->get('cart');
             if (array_key_exists($request->item_id, $cart)){
                 unset($cart[$request->item_id]);
+            }
+            $request->session()->put('cart', $cart);
+        }
+
+        return json_encode($cart);
+    }
+
+    public function updateCart(Request $request){
+        $array = $request->quantity;
+
+        if (Auth::check()){
+            foreach ($array as $id => $quantity){
+                $cart = Auth::user()->cart;
+                $item = CartItem::find($id);
+                $item->quantity = $quantity;
+                $item->save();
+            }
+        }else{
+            $cart = $request->session()->get('cart');
+            foreach ($array as $id => $quantity){
+                $cart[$id]['quantity'] = $quantity;
             }
             $request->session()->put('cart', $cart);
         }
