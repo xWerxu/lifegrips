@@ -31,7 +31,8 @@ class AuthLoginHandler
     public function handle(Login $event)
     {
         if ($cart = Auth::user()->cart){
-            if ($session_cart = $this->request->session()->get('cart')){
+            $session_cart = $this->request->session()->get('cart');
+            if ($session_cart != null){
                 foreach ($session_cart as $key => $item){
                     $cartItem = CartItem::where(['cart_id' => $cart->id, 'variant_id' => $key])->first();
                     if ($cartItem == null){
