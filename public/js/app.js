@@ -22322,7 +22322,18 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]).mount("#app"); // app.component("example-component", ExampleComponent);
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
+  data: function data() {
+    return {
+      count: 4
+    };
+  },
+  components: {
+    ExampleComponent: _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
+});
+var vm = app.mount("#app");
+console.log(vm.count); // => 4
 
 /***/ }),
 

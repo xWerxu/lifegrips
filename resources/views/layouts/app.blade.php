@@ -11,7 +11,6 @@
     <title>{{ config('app.name', 'Lifegrips') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -118,8 +117,12 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <div id="app"></div>
+        <div id="app">
+            <example-component></example-component>
+        </div>
     </div>
+    <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 
 </html>
