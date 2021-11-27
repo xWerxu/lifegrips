@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="contianer">
+        @if ($cart == null)
+            Koszyk pusty : C
+        @else
         <form class="form" method="POST" accept="{{ route('update-cart') }}">
             @csrf
             @method('POST')
@@ -41,7 +44,7 @@
                             <input type="number" class="form-control" name="quantity[{{ $item->id }}]" value="{{ $item->quantity }}">
                         </td>
                         <td>
-                            <button type="submit" class="btn btn-danger remove-item" data-id="{{ $item->id }}" name="usun">Usuń</button>
+                            <button type="button" class="btn btn-danger remove-item" data-id="{{ $item->id }}" name="usun">Usuń</button>
                         </td>
                     </tr>
                 @endforeach
@@ -50,6 +53,7 @@
             <button type="submit" name="aktualizuj" class="btn btn-primary">Aktualizuj</button>
         </form>
     </div>
+    @endif
 
     <script>
         $(".remove-item").click(function(){

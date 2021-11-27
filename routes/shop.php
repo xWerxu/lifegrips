@@ -7,7 +7,7 @@ use App\Http\Controllers\CartController;
 Route::get('/sklep', [CategoryController::class, 'index'])
                 ->name('shop');
 
-Route::get('sklep/add-to-cart', [CartController::class, 'addToCart'])
+Route::post('sklep/add-to-cart', [CartController::class, 'addToCart'])
                 ->name('add-to-cart');
 
 Route::get('/koszyk', [CartController::class, 'index'])

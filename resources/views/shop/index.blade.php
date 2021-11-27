@@ -31,6 +31,7 @@
 
         $.ajax({
             url: "{{ route('add-to-cart') }}",
+            type: 'POST',
             data: {
                 "variant_id": id,
                 "_token": token,
