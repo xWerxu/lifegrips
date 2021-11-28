@@ -117,7 +117,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <div id="app">
+        <div id="vue">
             <example-component></example-component>
         </div>
     </div>
