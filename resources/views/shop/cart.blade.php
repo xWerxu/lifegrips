@@ -26,7 +26,7 @@
                             <input type="number" class="form-control" name="quantity[{{ $key }}]" value="{{ $item['quantity'] }}">
                         </td>
                         <td>
-                            <button type="submit" class="btn btn-danger remove-item" data-id="{{ $key }}" name="usun">Usuń</button>
+                            <button type="button" class="btn btn-danger remove-item" data-id="{{ $key }}" name="usun">Usuń</button>
                         </td>
                     </tr>
                 @endforeach
@@ -55,7 +55,7 @@
     </div>
     @endif
 
-    {{-- <script>
+    <script>
         $(".remove-item").click(function(){
             var id = $(this).data("id");
             var token = $("meta[name='csrf-token']").attr("content");
@@ -71,6 +71,6 @@
                 console.log(data);
             });
         });
-    </script> --}}
+    </script>
 @endsection
 
