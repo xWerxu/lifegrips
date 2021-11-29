@@ -55,7 +55,7 @@
     </div>
     @endif
 
-    <script>
+    {{-- <script>
         $(".remove-item").click(function(){
             var id = $(this).data("id");
             var token = $("meta[name='csrf-token']").attr("content");
@@ -71,6 +71,6 @@
                 console.log(data);
             });
         });
-    </script>
+    </script> --}}
 @endsection
 

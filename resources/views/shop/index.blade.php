@@ -23,7 +23,7 @@
     $variant->id, a quantity jest ustalane przez oddzielnego inputa, ewentualnie zrobić tak że z poziomu sklepu/kategorii
     dodawać się nie da, tylko na stronie samego produktu bo to też ma sens i będzie dużo łatwiejsze do zrobienia.
     --}}
-<script>
+{{-- <script>
     $(".add-item").click(function(){
         var id = $(this).data("id");
         var quantity = $(this).data("quantity");
@@ -41,6 +41,6 @@
             console.log(data);
         });
     });
-</script>    
+</script>     --}}
 @endsection
 
