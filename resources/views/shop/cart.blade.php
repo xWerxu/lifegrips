@@ -52,6 +52,7 @@
             </table>
             <button type="submit" name="aktualizuj" class="btn btn-primary">Aktualizuj</button>
         </form>
+        <a href="{{ route('cart.order') }}" class="btn btn-primary">Zamów</a>
     </div>
     @endif
 
