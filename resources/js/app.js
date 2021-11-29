@@ -1,17 +1,12 @@
 require("./bootstrap");
 
 import { createApp } from "vue";
-import ExampleComponent from "./components/ExampleComponent.vue";
+import App from "./App.vue";
+import PrimeVue from "primevue/config";
 
-const app = createApp({
-    data() {
-        return { count: 4 };
-    },
-    components: {
-        ExampleComponent,
-    },
-});
+const app = createApp(App);
+app.use(PrimeVue);
 
-const vm = app.mount("#app");
+const vm = app.mount("#vue");
 
 console.log(vm.count); // => 4
