@@ -28,13 +28,13 @@
         </div>
         <div class="carousel-inner carousel_style">
             <div class="carousel-item active">
-            <img src="{{ asset('images/koncert1.jpg') }}" class="d-block w-100" alt="test">
+            <img src="{{ asset('images/test1.jpg') }}" class="d-block w-100" alt="test">
             </div>
             <div class="carousel-item">
-            <img src="{{ asset('images/koncert1.jpg') }}" class="d-block w-100" alt="test">
+            <img src="{{ asset('images/test1.jpg') }}" class="d-block w-100" alt="test">
             </div>
             <div class="carousel-item">
-            <img src="{{ asset('images/koncert1.jpg') }}" class="d-block w-100" alt="test">
+            <img src="{{ asset('images/test1.jpg') }}" class="d-block w-100" alt="test">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
