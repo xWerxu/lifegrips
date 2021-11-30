@@ -38,10 +38,7 @@
                 No tutaj jest strona główna póki co i tyle w sumie
             </div>
             @auth
-            @foreach ($test as $order)
-              {{ dd($test) }}
-            @endforeach
-            {{-- {{ dd($test) }} --}}
+
             <div>
                 Jesteś zalogowany jak coś
             </div>

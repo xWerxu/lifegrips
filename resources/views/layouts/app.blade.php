@@ -24,7 +24,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Lifegrips') }}
@@ -36,7 +36,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                    Left Side Of Navbar
                     <ul class="navbar-nav me-auto">
                         <a class="nav-link" href="{{ route('shop') }}">Sklep</a>
                         <li class="nav-item dropdown">
@@ -57,9 +57,9 @@
                         </li>
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
+                    Right Side Of Navbar
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+                        Authentication Links
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cart') }}">Koszyk</a>
                         </li>
@@ -112,7 +112,21 @@
                     </ul>
                 </div>
             </div>
+        </nav> -->
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <ul class="navbar-nav">
+                <div class="d-flex flex-row">
+                 <li> <a class="navbar-brand" href="/">Lifegrips</a> </li>
+                </div>
+                <!-- <div class="d-flex flex-reverse-row ">
+                <li><a class="nav-link" href="#">cock</a></li>
+                </div> -->
+                </ul>
+            </div>
         </nav>
+
+
 
         <main class="py-4">
             @yield('content')
