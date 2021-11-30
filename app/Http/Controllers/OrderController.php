@@ -32,8 +32,13 @@ class OrderController extends Controller
 
     public function postOrder(Request $request){
         $cart = null;
+        $total_price = 0;
         if (Auth::check()){
             $cart = Auth::user()->cart;
+            foreach ($cart->items as $item){
+                $variant = $item->variant;
+                $total_price += $variant->price * $item->quantity;
+            }
         }
         if ($cart == null){
             $cart = new Cart();
@@ -45,13 +50,14 @@ class OrderController extends Controller
                 $cart_item->cart_id = $cart->id;
                 $cart_item->quantity = $item['quantity'];
                 $cart_item->save();
+                $total_price += $item['price'] * $item['quantity'];
             }
         }
         $order = new Order();
         $order->cart_id = $cart->id;
         $order->shipment_id = $request->shipment;
         $order->status = 0;
-        $order->total_price = 1;
+        $order->total_price = $total_price;
         $order->payment_id = $request->payment;
         $order->city = $request->city;
         $order->zip = $request->postal_code;

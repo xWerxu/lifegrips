@@ -85,6 +85,24 @@
                         <span>Produkty</span>
                       </a>
                   </li>
+                  <li>
+                    <a href="{{ route('admin.shipment.index') }}" class="nav-link px-3 active">
+                      <span class="me-2"><i class="bi bi-truck"></i></span>
+                      <span>Dostawy</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('admin.payment.index') }}" class="nav-link px-3 active">
+                      <span class="me-2"><i class="bi bi-credit-card"></i></span>
+                      <span>Płatności</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('admin.coupon.index') }}" class="nav-link px-3 active">
+                      <span class="me-2"><i class="bi bi-cash-coin"></i></span>
+                      <span>Kody rabatowe</span>
+                    </a>
+                  </li>
               </ul>
           </nav>
         </div>

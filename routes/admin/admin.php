@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CouponController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\VariantController;
 use Illuminate\Support\Facades\Route;
 
@@ -69,3 +72,51 @@ Route::get('/admin/warianty/edytuj/{id}', [VariantController::class, 'edit'])
 Route::put('/admin/warianty/edytuj', [VariantController::class, 'postEdit'])
                 ->middleware('admin')
                 ->name('admin.variant.update');
+
+Route::get('/admin/dostawy', [ShipmentController::class, 'index'])
+                ->middleware('admin')
+                ->name('admin.shipment.index');
+
+Route::post('/admin/dostawy', [ShipmentController::class, 'create'])
+                ->middleware('admin')
+                ->name('admin.shipment.create');
+
+Route::delete('/admin/dostawy', [ShipmentController::class, 'delete'])
+                ->middleware('admin')
+                ->name('admin.shipment.delete');
+
+Route::put('/admin/dostawy', [ShipmentController::class, 'update'])
+                ->middleware('admin')
+                ->name('admin.shipment.update');
+
+Route::get('/admin/platnosci', [PaymentController::class, 'index'])
+                ->middleware('admin')
+                ->name('admin.payment.index');
+
+Route::post('/admin/platnosci', [PaymentController::class, 'create'])
+                ->middleware('admin')
+                ->name('admin.payment.create');
+
+Route::delete('/admin/platnosci', [PaymentController::class, 'delete'])
+                ->middleware('admin')
+                ->name('admin.payment.delete');
+
+Route::put('/admin/platnosci', [PaymentController::class, 'update'])
+                ->middleware('admin')
+                ->name('admin.payment.update');
+
+Route::get('/admin/kody-rabatowe', [CouponController::class, 'index'])
+                ->middleware('admin')
+                ->name('admin.coupon.index');
+
+Route::post('/admin/kody-rabatowe', [CouponController::class, 'create'])
+                ->middleware('admin')
+                ->name('admin.coupon.create');
+
+Route::delete('/admin/kody-rabatowe', [CouponController::class, 'delete'])
+                ->middleware('admin')
+                ->name('admin.coupon.delete');
+
+Route::put('/admin/kody-rabatowe', [CouponController::class, 'update'])
+                ->middleware('admin')
+                ->name('admin.coupon.update');

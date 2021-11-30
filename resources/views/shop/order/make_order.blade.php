@@ -39,7 +39,7 @@
             <br>
             <div class="w-50 mx-auto">
                 <label for="postal_code" class="form-label">Kod pocztowy</label>
-                <input id="postal_code" name="postal_code" type="text" class="form-control text-center" @auth value="{{ $user->postal_code }}" @endauth>
+                <input id="postal_code" name="postal_code" type="text" class="form-control text-center" @auth value="{{ Auth::user()->postal_code }}" @endauth>
             </div>
             <br>
             <div class="w-50 mx-auto">
