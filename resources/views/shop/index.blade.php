@@ -50,26 +50,38 @@
 
      <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <div class="card w-100">
-                    <div class="card-body">
-                        test
-                    </div>
-                 </div>        
-            </div>
-            <div class="col-md-8 ">
+                <div class="col-md-4 col-sm-12 mb-2">
                     <div class="card w-100">
                         <div class="card-body">
-                            test
+                            <ul class="list-group"> 
+  
+                                <li class="list-group-item">
+                                    An item
+                                </li>
+
+                                @foreach ($products as $product)
+
+                                <li class="list-group-item">
+                                 {{ $product->name }}
+                                </li>
+                                
+                                @endforeach
+
+                            </ul>
                         </div>
-                     </div>        
-            </div>
+                    </div>        
+                </div>
+                <div class="col-md-8 col-sm-12 mb-2">
+                        <div class="card w-100">
+                            <div class="card-body">
+                                test
+                            </div>
+                        </div>        
+                </div>
 
 
 
-
-
-    </div>
+         </div>
 {{-- 
     Tutaj bym proponował sztuczkę taką że jest jeden modal bo ajax musi wziąc 
     pod ID więc tylko jeden formularz może być, więc formualrz jest w wyskakującym modalu,

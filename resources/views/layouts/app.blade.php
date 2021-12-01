@@ -135,7 +135,7 @@
 
     <style>
         body{
-            background-color:
+            background-color: rgb(250,250,250);
         }
 
     </style>
