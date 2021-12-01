@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShopController;
 
-Route::get('/sklep', [CategoryController::class, 'index'])
+Route::get('/sklep', [ShopController::class, 'index'])
                 ->name('shop');
 
 Route::post('sklep/add-to-cart', [CartController::class, 'addToCart'])

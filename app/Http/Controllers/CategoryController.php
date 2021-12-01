@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public function index(){
-        $products = Product::where('available', 1)->get();
-
-        return view('shop.index', [
-            'products' => $products
-        ]);
-    }
 
     public function adminIndex(){
         $categories = Category::orderBy('parent_id')->get();

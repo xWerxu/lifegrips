@@ -60,6 +60,8 @@
                                 </li>
 
                                 @foreach ($products as $product)
+                                {{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
+                                {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
 
                                 <li class="list-group-item">
                                  {{ $product->name }}
