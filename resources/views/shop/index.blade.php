@@ -50,33 +50,36 @@
 
      <div class="container-fluid">
         <div class="row">
-                <div class="col-md-4 col-sm-12 mb-2">
-                    <div class="card w-100">
+                <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
+                    <div class="card w-100 card-style">
                         <div class="card-body">
+                            <h5 class="card-title">Kategorie:</h5>
                             <ul class="list-group"> 
-  
-                                <li class="list-group-item">
-                                    An item
-                                </li>
 
-                                @foreach ($products as $product)
+                                @foreach ($categories as $category)
                                 {{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
                                 {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
 
-                                <li class="list-group-item">
-                                 {{ $product->name }}
-                                </li>
-                                
+                                <a href="#" class="list-group-item list-group-item-action border border-2 rounded-pill mb-2">
+                                 {{ $category->name }}
+                                </a>
                                 @endforeach
 
                             </ul>
                         </div>
                     </div>        
                 </div>
-                <div class="col-md-8 col-sm-12 mb-2">
+                <div class="col-xl-10 col-md-9 col-sm-12 mb-1">
                         <div class="card w-100">
                             <div class="card-body">
-                                test
+                            @foreach ($products as $produt)
+                                {{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
+                                {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
+
+                                <a href="#" class="list-group-item list-group-item-action border border-2 rounded-pill mb-2">
+                                 {{ $produt->variant->name }}
+                                </a>
+                                @endforeach
                             </div>
                         </div>        
                 </div>
@@ -119,6 +122,10 @@
          max-height: 350px;
     }
 
+    .card-style{
+        border-radius: 20px;
+    }
+
     @media only screen and (max-width: 768px) {
         .carousel_style{
         border-radius: 10px;
@@ -127,8 +134,6 @@
          .carousel-indicators-styling{
              
          }
-
-
     }
 
 </style>    
