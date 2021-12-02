@@ -69,19 +69,23 @@
                         </div>
                     </div>        
                 </div>
-                <div class="col-xl-10 col-md-9 col-sm-12 mb-1">
-                        <div class="card w-100">
-                            <div class="card-body">
-                            @foreach ($products as $produt)
-                                {{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
-                                {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
+                <div class="col-xl-10 col-md-9 col-sm-12 mb-1 d-flex flex-wrap">
+                @foreach ($products as $product)
+                        <div class="col-md-5 col-xl-4">
+                            <div class="card">
+                                <div class="card-body product_styling">
+                                
+                                    {{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
+                                    {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
+    
+                                     
+                                     <h5 class="card-title">{{ $product->mainVariant->name  }}</h5>
 
-                                <a href="#" class="list-group-item list-group-item-action border border-2 rounded-pill mb-2">
-                                 {{ $produt->variant->name }}
-                                </a>
-                                @endforeach
-                            </div>
-                        </div>        
+                                    
+                                </div>
+                            </div> 
+                        </div>
+                @endforeach       
                 </div>
 
 
@@ -124,6 +128,10 @@
 
     .card-style{
         border-radius: 20px;
+    }
+
+    .product_styling{
+        border-radius: 15px;
     }
 
     @media only screen and (max-width: 768px) {
