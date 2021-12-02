@@ -31,7 +31,8 @@ class VariantEditRequest extends FormRequest
                 Rule::unique('variants')->ignore($this->variant_id),
                 'max:255'
             ],
-            'adds.*' => 'image|mimes:png,jpg|max:2048|dimensions:min_width=600,min_height=600,max_width=1000,max_height=1000',
+            'adds.*' => 'image|mimes:png,jpg|max:2048|dimensions:min_width=350,min_height=350,max_width=1000,max_height=1000',
+            'main' => 'image|mimes:png,jpg|max:2048|dimensions:min_width=350,min_height=350,max_width=1000,max_height=1000',
             'price' => 'required|regex:/^\d+(\.\d{1,2})?$/|min:0',
             'on_stock' => 'required|numeric|min:0'
         ];
@@ -45,7 +46,7 @@ class VariantEditRequest extends FormRequest
             '*.image' => 'Plik musi być zdjęciem',
             '*.mimes' => 'Obsługiwane formaty to: jpg i png',
             '*.max' => 'Maksymalny rozmiar pliku to 2048KB',
-            '*.dimensions' => 'Obraz musi mieć wymiary min. 600x600px, max. 1000x1000px',
+            '*.dimensions' => 'Obraz musi mieć wymiary min. 350x350px, max. 1000x1000px',
             'price.regex' => 'Format ceny to: xx.xx',
             'on_stock.numeric' => 'Wartość musi być liczbą',
             '*.min' => 'Wartość musi być nieujemna',

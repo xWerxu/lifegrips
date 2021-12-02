@@ -128,7 +128,7 @@ class ProductController extends Controller
             $main_file            = $request->file('main');
             $name = $main_file->hashName();
             $image_resized = Imagee::make($main_file->getRealPath());
-            $image_resized->resize(600, 600)->encode('png', 90);
+            $image_resized->resize(350, 350)->encode('png', 90);
             Storage::disk('public')->put('produkty/' . $name, $image_resized->encoded);
         }
 
@@ -180,7 +180,7 @@ class ProductController extends Controller
             foreach ($request->file('adds') as $add){
                 $name = $add->hashName();
                 $image_resized = Imagee::make($add->getRealPath());
-                $image_resized->resize(600, 600)->encode('png', 90);
+                $image_resized->resize(350, 350)->encode('png', 90);
                 Storage::disk('public')->put('produkty/' . $name, $image_resized->encoded);
                 
                 $image = new Image();
