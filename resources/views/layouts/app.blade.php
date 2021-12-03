@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Lifegrips') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -113,33 +113,26 @@
                 </div>
             </div>
         </nav> -->
-        <nav class="navbar navbar-dark bg-dark">
-            <div class="container">
-                <ul class="navbar-nav">
-                <div class="d-flex flex-row">
-                 <li> <a class="navbar-brand" href="/">Lifegrips</a> </li>
-                </div>
-                <!-- <div class="d-flex flex-reverse-row ">
-                <li><a class="nav-link" href="#">cock</a></li>
-                </div> -->
-                </ul>
-            </div>
-        </nav>
-
-
+    <main-navbar></main-navbar>
+    <sub-nav></sub-nav>
 
         <main class="py-4">
             @yield('content')
         </main>
+
     </div>
 
     <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,500&display=swap');       
         body{
             background-color: rgb(250,250,250);
+            font-family: 'Open Sans', sans-serif;
         }
 
     </style>
 
 </body>
+<script src="{{ asset('js/app.js') }}"></script>
 
 </html>
