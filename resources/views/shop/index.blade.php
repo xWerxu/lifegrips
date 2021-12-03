@@ -52,12 +52,12 @@
                                      <h5 class="card-title">{{ $product->mainVariant->name  }}</h5>
 
                                 <a href="#" class="list-group-item list-group-item-action border border-2 rounded-pill mb-2">
-                                 {{ $produt->mainVariant->name }}
+                                 {{ $product->mainVariant->name }}
                                 </a>
-                                @endforeach
                             </div>
                         </div>        
                 </div>
+                @endforeach
          </div>
      </div>
 {{-- 
