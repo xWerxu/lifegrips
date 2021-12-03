@@ -109,7 +109,7 @@ class CartController extends Controller
                 $item = CartItem::find($id);
                 $item->quantity = $quantity;
                 if ($coupon != null){
-                    $cart->coupon_id = $coupon->id;
+                    $cart->coupon_id = $coupon->id; 
                     $cart->save();
                 }
                 $item->save();

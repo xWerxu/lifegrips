@@ -73,7 +73,15 @@
                 @endif
             </td>
             <td class="align-middle"> {{ $order->total_price }} </td>
-            <td class="align-middle custom-box"> {{ $order->status }} </td>
+            <td class="align-middle custom-box">
+                @if ($order->status == 0)
+                    <span class="badge rounded-pill bg-secondary"><i class="bi bi-hourglass me-2"></i>Oczekuje</span>
+                @elseif ($order->status == 1)
+                    <span class="badge rounded-pill bg-success"><i class="bi bi-check-lg me-2"></i>Zatwierdzone</span>
+                @else
+                    <span class="badge rounded-pill bg-danger"><i class="bi bi-x-lg me-2"></i>Anulowane</span>
+                @endif
+            </td>
             <td class="align-middle"> {{ $order->created_at }} </td>
             <td class="align-middle">
                 <div class="btn-group">

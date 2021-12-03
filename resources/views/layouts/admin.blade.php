@@ -103,6 +103,12 @@
                       <span>Kody rabatowe</span>
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ route('admin.order.index') }}" class="nav-link px-3 active">
+                      <span class="me-2"><i class="bi bi-bag-check"></i></span>
+                      <span>Zamówienia</span>
+                    </a>
+                  </li>
               </ul>
           </nav>
         </div>

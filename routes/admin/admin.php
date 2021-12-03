@@ -129,3 +129,7 @@ Route::get('/admin/zamowienia', [OrderController::class, 'adminIndex'])
 Route::get('/admin/zamowienia/{id}', [OrderController::class, 'edit'])
                 ->middleware('admin')
                 ->name('admin.order.edit');
+
+Route::put('/admin/zamowienia/{id}', [OrderController::class, 'update'])
+                ->middleware('admin')
+                ->name('admin.order.update');

@@ -6,12 +6,7 @@
 </div>
 <br><br>
 <hr class="d-block">
-@if (session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-@endif
-<form action="#" method="POST">
+<form action="{{ route('admin.order.update', ['id' => $order->id]) }}" method="POST">
     @csrf
     <input type="hidden" name="order_id" value="{{ $order->id }}">
     <div class="card">
@@ -20,6 +15,11 @@
                 <div class="container">
                     <h2 class="mt-3">Zamówione produkty</h2>
                     <hr>
+                    @if (session('quantityError'))
+                        <div class="alert alert-danger">
+                            {{ session('quantityError') }}
+                        </div>
+                    @endif
                     <table class="table">
                         <thead>
                             <tr class="text-center">
@@ -27,7 +27,7 @@
                                 <th scope="col">Nazwa</th>
                                 <th scope="col">Cena/szt</th>
                                 <th scope="col">Zamówiono</th>
-                                <th scope="col">Mamy sztuk</th>
+                                <th scope="col">Sztuk w magazynie</th>
                                 <th scope="col">Łączna cena</th>
                             </tr>
                         </thead>
@@ -41,7 +41,7 @@
                                 <td class="align-middle text-break w-25">{{ $variant->name }}</td>
                                 <td class="align-middle">{{ $variant->price }} zł</td>
                                 <td class="align-middle">
-                                    <input class="form-control" type="number" name="item[{{ $item->id }}][quantity]" value="{{ $item->quantity }}" min="0" max="{{ $variant->on_stock }}">
+                                    <input class="form-control" type="number" name="item[{{ $item->id }}]" value="{{ $item->quantity }}" min="0">
                                 </td>
                                 <td class="align-middle">{{ $variant->on_stock }}</td>
                                 <td class="align-middle">{{ $variant->price * $item->quantity }} zł</td>
@@ -70,7 +70,10 @@
             </div>
         </div>
         @method('PUT')
-        <button class="btn btn-primary mt-5">Zapisz zmiany</button>
+        <div class="btn-group">
+            <button name="action" value="cancel" class="btn btn-danger mt-5">Anuluj zamówienie</button>
+            <button name="action" value="confirm" class="btn btn-success mt-5">Potwierdź zamówienie</button>
+        </div>
     </div>
 </form>
 @endsection

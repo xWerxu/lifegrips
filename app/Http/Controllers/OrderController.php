@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MakeOrderRequest;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Coupon;
@@ -10,6 +11,7 @@ use App\Models\Payment;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\MessageBag;
 
 class OrderController extends Controller
 {
@@ -55,7 +57,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function postOrder(Request $request){
+    public function postOrder(MakeOrderRequest $request){
         $cart = null;
         $total_price = 0;
         if (Auth::check()){
@@ -147,8 +149,50 @@ class OrderController extends Controller
         public function edit($id){
             $order = Order::findOrFail($id);
 
-            return view('admin.order.edit', [
+            if ($order->status == 0){
+                return view('admin.order.edit', [
+                    'order' => $order
+                ]);
+            }
+
+            return view('admin.order.show', [
                 'order' => $order
             ]);
+        }
+
+        public function update(Request $request, $id){
+            $order = Order::findOrFail($id);
+            if (isset($request->action) && $request->action == "cancel"){
+                $order->status = 2;
+                $order->save();
+                return redirect()->route('admin.order.edit', ['id' => $id])->with('success', 'Anulowano zamówienie.');
+            }
+            $cart = $order->cart;
+            $items = $request->item;
+            $total_price = 0;
+            foreach ($request->item as $item_id => $quantity){
+                $cartItem = CartItem::find($item_id);
+                $variant = $cartItem->variant;
+                if ($quantity > $variant->on_stock){
+                    return redirect()->route('admin.order.edit', ['id' => $id])->with('quantityError', 'Zamówiona ilość produktu ' . $variant->name . ' nie może być większa niż ilość tego produktu w magazynie!');
+                }
+                $cartItem->quantity = $quantity;
+                $cartItem->save();
+                $variant->on_stock -= $quantity;
+                $variant->save();
+                $total_price += $variant->price * $cartItem->quantity;
+            }
+
+            $cart_coupon = $cart->coupon;
+            if ($cart_coupon != null && $cart_coupon->promotion > 0){
+                $total_price = ($total_price / 100) * (100 - $cart_coupon->promotion);
+            }
+
+            $total_price = number_format($total_price, 2);
+            $order->total_price = $total_price;
+            $order->status = 1;
+            $order->save();
+
+            return redirect()->route('admin.order.edit', ['id' => $id])->with('success', 'Zatwierdzono zamówienie.');
         }
 }
