@@ -16,9 +16,10 @@ class Order extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'first_name',
+        'second_name',
         'cart_id',
         'shipment_id',
-        'coupon_id',
         'status',
         'total_price',
         'completed_date',
@@ -40,9 +41,5 @@ class Order extends Model
 
     public function payment(){
         return $this->hasOne(Payment::class, 'id', 'payment_id');
-    }
-
-    public function coupon(){
-        return $this->hasOne(Coupon::class, 'id', 'coupon_id');
     }
 }

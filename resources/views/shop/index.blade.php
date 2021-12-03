@@ -77,7 +77,7 @@
                                 {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
 
                                 <a href="#" class="list-group-item list-group-item-action border border-2 rounded-pill mb-2">
-                                 {{ $produt->variant->name }}
+                                 {{ $produt->mainVariant->name }}
                                 </a>
                                 @endforeach
                             </div>

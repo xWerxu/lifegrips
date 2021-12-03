@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Coupon;
 use App\Models\Variant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,12 +101,17 @@ class CartController extends Controller
 
     public function updateCart(Request $request){
         $array = $request->quantity;
+        $coupon = Coupon::where('coupon', $request->coupon)->first();
 
         if (Auth::check()){
             foreach ($array as $id => $quantity){
                 $cart = Auth::user()->cart;
                 $item = CartItem::find($id);
                 $item->quantity = $quantity;
+                if ($coupon != null){
+                    $cart->coupon_id = $coupon->id;
+                    $cart->save();
+                }
                 $item->save();
             }
         }else{
@@ -113,8 +119,12 @@ class CartController extends Controller
             foreach ($array as $id => $quantity){
                 $cart[$id]['quantity'] = $quantity;
             }
+            if ($coupon != null){
+                 $request->session()->put('coupon', $coupon->coupon);
+            }
             $request->session()->put('cart', $cart);
         }
+        
 
         return redirect()->route('cart');
     }
@@ -122,12 +132,15 @@ class CartController extends Controller
     public function index(Request $request){
         if(Auth::check()){
             $cart = Auth::user()->cart;
+            $coupon = null;
         }else{
             $cart = $request->session()->get('cart');
+            $coupon = $request->session()->get('coupon');
         }
 
         return view('shop.cart', [
-            'cart' => $cart
+            'cart' => $cart,
+            'coupon' => $coupon
         ]);
     }
 }

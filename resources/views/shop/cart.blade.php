@@ -50,8 +50,26 @@
                 @endforeach
             @endauth
             </table>
+            @auth
+                @if ($cart->coupon_id == null)
+                <label class="form-label">Kod rabatowy:</label>
+                <input type="text" name="coupon" class="form-control">
+                @else
+                    Użyto kuponu {{ $cart->coupon->coupon }}
+                @endif
+            @endauth
+            @guest
+                @if ($coupon == null)
+                    <label class="form-label">Kod rabatowy:</label>
+                    <input type="text" name="coupon" class="form-control">
+                @else
+                    Użyto kuponu {{ $coupon }}
+                @endif
+            @endguest
+            <br>
             <button type="submit" name="aktualizuj" class="btn btn-primary">Aktualizuj</button>
         </form>
+        <br>
         <a href="{{ route('cart.order') }}" class="btn btn-primary">Zamów</a>
     </div>
     @endif

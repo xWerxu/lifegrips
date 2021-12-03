@@ -59,12 +59,27 @@
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="shipment" value="{{ $shipment->id }}">
                     <label class="form-check-label" for="flexRadioDefault1">
-                        {{ $shipment->name }}
+                        {{ $shipment->name }} - {{$free_shipment == 1 ? 'Darmowa z kodem ' . $coupon->coupon : $shipment->price . ' zł'}}
                     </label>
                     </div>
                 @endforeach
             </div>
+            <div class="w-25 float-end">
+            Tutaj podsumowanie cenowe jest:
+            @if ($coupon != null)
+                <h5>{{ number_format($total_price,2) }} zł</h5>
+
+                <h5 class="text-secondary">-{{ number_format(($total_price / 100) * $coupon->promotion,2) }} zł</h5>
+                <div class="text-primary display-1">{{ number_format($total_price - ($total_price / 100) * $coupon->promotion,2) }} zł</div>
+            </div>
+            @else
+            <div class="text-primary display-1">{{ number_format($total_price, 2) }} zł</div>
+            </div>
+            @endif
+            <br><br>
+            <div class="text-center">
             <button type="submit" class="btn btn-primary">Zamów</button>
+            </div>
         </form>
     @endif
     </div>

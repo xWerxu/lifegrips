@@ -17,10 +17,19 @@ class Cart extends Model
 
     protected $fillable = [
         'client_id',
-        'status'
+        'status',
+        'coupon_id'
     ];
 
     public function items(){
         return $this->hasMany(CartItem::class, 'cart_id', 'id');
+    }
+
+    public function client(){
+        return $this->hasOne(User::class, 'id', 'client_id');
+    }
+
+    public function coupon(){
+        return $this->hasOne(Coupon::class, 'id', 'coupon_id');
     }
 }

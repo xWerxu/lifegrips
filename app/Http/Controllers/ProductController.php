@@ -26,7 +26,7 @@ class ProductController extends Controller
         $pages = ceil($max/$limit);
         $limits = [10, 25, 50];
 
-        $products = Product::all()->skip(($page - 1) * $limit)  ->take($limit);
+        $products = Product::all()->skip(($page - 1) * $limit)->take($limit);
 
         return view('admin.products.index', [
             'products' => $products,

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShipmentController;
@@ -120,3 +121,11 @@ Route::delete('/admin/kody-rabatowe', [CouponController::class, 'delete'])
 Route::put('/admin/kody-rabatowe', [CouponController::class, 'update'])
                 ->middleware('admin')
                 ->name('admin.coupon.update');
+
+Route::get('/admin/zamowienia', [OrderController::class, 'adminIndex'])
+                ->middleware('admin')
+                ->name('admin.order.index');
+
+Route::get('/admin/zamowienia/{id}', [OrderController::class, 'edit'])
+                ->middleware('admin')
+                ->name('admin.order.edit');
