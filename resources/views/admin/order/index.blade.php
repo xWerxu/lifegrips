@@ -85,7 +85,11 @@
             <td class="align-middle"> {{ $order->created_at }} </td>
             <td class="align-middle">
                 <div class="btn-group">
+                    @if ($order->status == 0)
+                    <a href="{{ route('admin.order.edit', ['id' => $order->id]) }}" class="btn btn-warning"><i class="me-2 bi bi-pencil"></i>Przetwórz</a>
+                    @else
                     <a href="{{ route('admin.order.edit', ['id' => $order->id]) }}" class="btn btn-primary"><i class="me-2 bi bi-search"></i>Sprawdź</a>
+                    @endif
                 </div>
             </td>
         </tr>

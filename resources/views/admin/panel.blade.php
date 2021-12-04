@@ -2,11 +2,10 @@
 
 @section('content')
     jestes adminem jak cos
-    {{dump($order)}}
-    {{dump($cart)}}
     <pre>
-        @php
-            print_r($items);
-        @endphp
+    @php
+        var_dump($test);
+        var_dump($testt);
+    @endphp
     </pre>
 @endsection
