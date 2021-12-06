@@ -14,10 +14,13 @@ class CategoryController extends Controller
         $categories = Category::orderBy('parent_id')->get();
 
         $mains = DB::table('categories')->whereNull('parent_id')->get();
+        $test = Category::whereNull('parent_id')->get();
+        $test->load('categories');
 
         return view('admin.categories.index', [
             'categories' => $categories,
-            'mains' => $mains
+            'mains' => $mains,
+            'test' => json_encode($test)
         ]);
     }
 
