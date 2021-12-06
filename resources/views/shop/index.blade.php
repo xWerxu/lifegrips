@@ -20,43 +20,16 @@
 
      <div class="container py-5">
         <div class="row">
-                <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
-                    <div class="card w-100 card-style">
-                        <div class="card-body">
-                            <h5 class="card-title">Kategorie:</h5>
-                            <ul class="list-group"> 
+{{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
+{{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
 
-                                @foreach ($categories as $category)
-                                {{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
-                                {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
+{{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
+{{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
 
-                                <a href="#" class="list-group-item list-group-item-action border border-2 rounded-pill mb-2">
-                                 {{ $category->name }}
-                                </a>
-                                @endforeach
 
-                            </ul>
-                        </div>
-                    </div>        
-                </div>
-                <div class="col-xl-10 col-md-9 col-sm-12 mb-1 d-flex flex-wrap">
-                @foreach ($products as $product)
-                        <div class="col-md-5 col-xl-4">
-                            <div class="card">
-                                <div class="card-body product_styling">
-                                
-                                    {{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
-                                    {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
+
     
-                                     
-                                     <h5 class="card-title">{{ $product->mainVariant->name  }}</h5>
-
-                            </div>
-                        </div>        
-                </div>
-                @endforeach
-         </div>
-     </div>
+        </div>
 {{-- 
     Tutaj bym proponował sztuczkę taką że jest jeden modal bo ajax musi wziąc 
     pod ID więc tylko jeden formularz może być, więc formualrz jest w wyskakującym modalu,
