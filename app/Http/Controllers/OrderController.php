@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MakeOrderRequest;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Coupon;
 use App\Models\Order;
+use App\Models\OrderLog;
 use App\Models\Payment;
 use App\Models\Shipment;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\MessageBag;
 
 class OrderController extends Controller
 {
@@ -55,7 +59,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function postOrder(Request $request){
+    public function postOrder(MakeOrderRequest $request){
         $cart = null;
         $total_price = 0;
         if (Auth::check()){
@@ -147,8 +151,108 @@ class OrderController extends Controller
         public function edit($id){
             $order = Order::findOrFail($id);
 
-            return view('admin.order.edit', [
+            if ($order->status == 0){
+                $orderLog = OrderLog::where('order_id', $id)->where('status', 0)->latest()->first();
+
+                if ($orderLog != null){
+                    if ($orderLog->employee_id == Auth::user()->id){
+                        return view('admin.order.edit', [
+                            'order' => $order
+                        ]);
+                    }
+                    $last_log = new DateTime($orderLog->created_at);
+                    $tz = $last_log->getTimezone();
+                    $now = new DateTime('now', $tz);
+                    $s_now = $now->format('Y-m-d H:i:s');
+                    $s_last = $last_log->format('Y-m-d H:i:s');
+                    $mins_diff = abs(strtotime($s_now) - strtotime($s_last)) / 60;
+                    
+                    if ($mins_diff < 10){
+                        $employee = $orderLog->employee;
+                        return redirect()->route('admin.order.index')->with('error', 'Zamówienie o numerze ' . $order->id . ' jest aktualnie przetwarzane przez pracownika ' . $employee->email . '.');
+                    }
+                    $orderLog->delete();
+                }
+
+                
+
+                $orderLog = new OrderLog();
+                $orderLog->order_id = $order->id;
+                $orderLog->employee_id = Auth::user()->id;
+                $orderLog->status = 0;
+                $orderLog->save();
+
+                return view('admin.order.edit', [
+                    'order' => $order
+                ]);
+            }
+
+            return view('admin.order.show', [
                 'order' => $order
             ]);
+        }
+
+        public function update(Request $request, $id){
+            $order = Order::findOrFail($id);
+            if (isset($request->action) && $request->action == "cancel"){
+                $cart = $order->cart;
+                $items = $request->item;
+                $total_price = 0;
+                foreach ($request->item as $item_id => $quantity){
+                    $cartItem = CartItem::find($item_id);
+                    $variant = $cartItem->variant;
+                    $cartItem->quantity = $quantity;
+                    $cartItem->save();
+                    $total_price += $variant->price * $cartItem->quantity;
+                }
+
+                $cart_coupon = $cart->coupon;
+                if ($cart_coupon != null && $cart_coupon->promotion > 0){
+                    $total_price = ($total_price / 100) * (100 - $cart_coupon->promotion);
+                }
+
+                $total_price = number_format($total_price, 2);
+                $order->total_price = $total_price;
+                $order->status = 2;
+                $order->completed_date = now();
+                $order->save();
+
+                $orderLog = OrderLog::where('order_id', $id)->where('employee_id', Auth::user()->id)->where('status', 0)->latest()->first();
+                $orderLog->delete();
+
+                return redirect()->route('admin.order.edit', ['id' => $id])->with('success', 'Anulowano zamówienie.');
+            }
+
+            $cart = $order->cart;
+            $items = $request->item;
+            $total_price = 0;
+            foreach ($request->item as $item_id => $quantity){
+                $cartItem = CartItem::find($item_id);
+                $variant = $cartItem->variant;
+                if ($quantity > $variant->on_stock){
+                    return redirect()->route('admin.order.edit', ['id' => $id])->with('quantityError', 'Zamówiona ilość produktu ' . $variant->name . ' nie może być większa niż ilość tego produktu w magazynie!');
+                }
+                $cartItem->quantity = $quantity;
+                $cartItem->save();
+                $variant->on_stock -= $quantity;
+                $variant->save();
+                $total_price += $variant->price * $cartItem->quantity;
+            }
+
+            $cart_coupon = $cart->coupon;
+            if ($cart_coupon != null && $cart_coupon->promotion > 0){
+                $total_price = ($total_price / 100) * (100 - $cart_coupon->promotion);
+            }
+
+            $total_price = number_format($total_price, 2);
+            $order->total_price = $total_price;
+            $order->status = 1;
+            $order->completed_date = date('Y-m-d h:i:s');
+            $order->save();
+
+            $orderLog = OrderLog::where('order_id', $id)->where('employee_id', Auth::user()->id)->where('status', 0)->latest()->first();
+            $orderLog->delete();
+
+            return redirect()->route('admin.order.edit', ['id' => $id])->with('success', 'Zatwierdzono zamówienie.');
         }
 }
