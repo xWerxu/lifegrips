@@ -2,7 +2,7 @@
 import ExampleComponent from "./components/ExampleComponent.vue";
 import ProductCard from "./components/ProductCard.vue";
 import MainNavbar from "./components/MainNavbar.vue";
-import MainCarousel from "./components/MainCarousel.vue";
+import MainCarousel from "./components/MainBanner.vue";
 
 export default {
     data() {

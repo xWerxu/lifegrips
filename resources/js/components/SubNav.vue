@@ -18,19 +18,19 @@
             >
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" :href="href_muzyka"> Muzyka </a>
+                        <a
+                            class="nav-link active"
+                            aria-current="page"
+                            :href="href_muzyka"
+                        >
+                            Muzyka
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" :href="href_akcesoria">Akcesoria</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" :href="href_koszulki">Koszulki</a>
-                    </li>
-                    <li class="nav-item">
-                     <a class="nav-link" :href="href_bluzy">Bluzy</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" :href="href_spodnie">Spodnie</a>
+                        <a class="nav-link" :href="href_odziez">Odzież</a>
                     </li>
                 </ul>
             </div>
@@ -40,28 +40,39 @@
 
 <script>
 export default {
-    data(){
-        return{
-
-        }
+    data() {
+        return {};
     },
-    props: ["href_muzyka","href_akcesoria","href_koszulki","href_bluzy","href_spodnie"]
+    props: ["href_muzyka", "href_akcesoria", "href_odziez"],
 };
 </script>
 
-<style>
-
+<style scoped>
 li {
-  padding-left: 3rem;
-  padding-right: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
-a:hover {
-      box-shadow:
-    0 0 60px 30px #fff,  /* inner white */
-    0 0 100px 60px #f0f, /* middle magenta */
-    0 0 140px 90px #0ff; /* outer cyan */
-
-    background-color:white;
+a {
+    color: #fff;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    padding: 2px 20px;
+    position: relative;
+}
+a:after {
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+a:hover:after {
+    width: 100%;
+    left: 0;
 }
 </style>

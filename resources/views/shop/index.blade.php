@@ -16,9 +16,9 @@
         <br>
         @endforeach
     </div> Komentuje to bo chce cokolwiek ruszyć a później będzie sie z tym bawiło -->
-    <main-carousel src1="{{ asset('images/test1.jpg') }}" src2="{{ asset('images/test1.jpg') }}" src3="{{ asset('images/test1.jpg') }}"></main-carousel>
+    <main-banner src_img="{{ asset('images/layout_banner.jpg') }}"></main-banner>
 
-     <div class="container">
+     <div class="container py-5">
         <div class="row">
                 <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
                     <div class="card w-100 card-style">

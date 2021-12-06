@@ -1,7 +1,7 @@
 <script>
 import ProductCard from "./components/ProductCard.vue";
 import MainNavbar from "./components/MainNavbar.vue";
-import MainCarousel from "./components/MainCarousel.vue";
+import MainBanner from "./components/MainBanner.vue";
 import SubNav from "./components/SubNav.vue";
 
 export default {
@@ -13,7 +13,7 @@ export default {
         ProductCard,
         MainNavbar,
         SubNav,
-        MainCarousel,
+        MainBanner,
     },
 
     mounted() {

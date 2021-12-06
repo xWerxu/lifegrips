@@ -114,9 +114,9 @@
             </div>
         </nav> -->
     <main-navbar></main-navbar>
-    <sub-nav href_muzyka="#" href_akcesoria="#" href_koszulki="#" href_bluzy="#" href_spodnie="#" ></sub-nav>
+    <sub-nav href_muzyka="#" href_akcesoria="#" href_odziez="#" ></sub-nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main> 
 
