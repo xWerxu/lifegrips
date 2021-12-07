@@ -3,6 +3,7 @@ import ProductCard from "./components/ProductCard.vue";
 import MainNavbar from "./components/MainNavbar.vue";
 import MainBanner from "./components/MainBanner.vue";
 import SubNav from "./components/SubNav.vue";
+import FrontpageLabel from "./components/FrontpageLabel.vue";
 
 export default {
     data() {
@@ -14,6 +15,7 @@ export default {
         MainNavbar,
         SubNav,
         MainBanner,
+        FrontpageLabel
     },
 
     mounted() {

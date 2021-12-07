@@ -17,19 +17,15 @@
         @endforeach
     </div> Komentuje to bo chce cokolwiek ruszyć a później będzie sie z tym bawiło -->
     <main-banner src_img="{{ asset('images/layout_banner.jpg') }}"></main-banner>
+    <frontpage-label src_img="{{ asset('images/label_image/drake1.png') }}"></frontpage-label>
 
-     <div class="container py-5">
-        <div class="row">
+
 {{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
 {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
 
 {{-- Do wariantu produktu dostajes się $produt->variant, więc np $product->variant->name --}}
 {{-- Do child kategorii dostajesz się $category->categories, można dać w foreacha i wtedy ładnie lata --}}
 
-
-
-    
-        </div>
 {{-- 
     Tutaj bym proponował sztuczkę taką że jest jeden modal bo ajax musi wziąc 
     pod ID więc tylko jeden formularz może być, więc formualrz jest w wyskakującym modalu,
@@ -38,8 +34,6 @@
     dodawać się nie da, tylko na stronie samego produktu bo to też ma sens i będzie dużo łatwiejsze do zrobienia.
     --}}
 
-    <div class="d-flex justify-content-center">
-    <product-card></product-card>
-    </div>
+
 @endsection
 
