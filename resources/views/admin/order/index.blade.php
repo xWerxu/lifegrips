@@ -42,7 +42,7 @@
 <ul class="pagination float-end">
     @foreach ($limits as $limit)
         <li class="page-item
-        @if ($limit == $current_limit || $limit == 25)
+        @if ($limit == $current_limit)
             active
         @endif
         ">
@@ -67,7 +67,7 @@
             <td class="align-middle" scope="row"> {{ $order->id }}</td>
             <td class="align-middle">
                 @if ($order->cart->client_id != null)
-                    {{ $order->cart->client->email }}
+                    <a class="link-dark" href="{{ route('admin.customer.show', ['id' => $order->cart->client_id]) }}">{{ $order->cart->client->email }}</a>
                 @else
                     <div class="text-secondary">Anonimowy</div>
                 @endif

@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderLog;
 use App\Models\Payment;
 use App\Models\Shipment;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -129,8 +130,9 @@ class OrderController extends Controller
         }
 
         public function adminIndex(Request $request){
+
             $page = $request->has('page') ? $request->get('page') : 1;
-            $limit = $request->has('limit') ? $request->get('limit') : 10;
+            $limit = $request->has('limit') ? $request->get('limit') : 25;
 
             $max = Order::count();
             $pages = ceil($max/$limit);

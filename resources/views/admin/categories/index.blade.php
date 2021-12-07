@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1><i class="bi bi-list-ul mt-0 mt-md-5"></i>Kategorie</h1>
+<h1><i class="bi bi-list-ul mt-0 mt-md-5 me-2"></i>Kategorie</h1>
 <hr class="divider">
 @if (session('error'))
       <div class="alert alert-danger">

@@ -16,11 +16,15 @@
         {{ session('success') }}
       </div>
 @endif
+<form class="d-flex w-50 mb-2 clearfix" method="get" action="{{ route('admin.product.index') }}">
+    <input class="form-control w-50 me-2 clearfix" type="search" name="q" placeholder="Nazwa produktu" aria-label="Search">
+    <button class="btn btn-outline-success clearfix" type="submit"><i class="me-2 bi bi-search"></i>Wyszukaj</button>
+</form>
 @if ($pages > 1)
 <ul class="pagination float-start">
     @if ($current_page > 1)
     <li class="page-item" href="#" aria-label="Poprzednia">
-        <a href="{{ url()->current() }}?page={{ $current_page - 1 }}&limit={{ $current_limit }}" class="page-link">Poprzednia</a>
+        <a href="{{ url()->current() }}?page={{ $current_page - 1 }}&limit={{ $current_limit }}&q={{ $q }}" class="page-link">Poprzednia</a>
     </li>
     @endif
     @for ($i=1; $i<=$pages; $i++)
@@ -30,12 +34,12 @@
         @endif
         "
         >
-            <a href="{{ url()->current() }}?page={{ $i }}&limit={{ $current_limit }}" class="page-link">{{ $i }}</a>
+            <a href="{{ url()->current() }}?page={{ $i }}&limit={{ $current_limit }}&q={{ $q }}" class="page-link">{{ $i }}</a>
         </li>
     @endfor
     @if ($current_page < $pages)
     <li class="page-item" aria-label="Poprzednia">
-        <a href="{{ url()->current() }}?page={{ $current_page + 1 }}&limit={{ $current_limit }}" class="page-link">Następna</a>
+        <a href="{{ url()->current() }}?page={{ $current_page + 1 }}&limit={{ $current_limit }}&q={{ $q }}" class="page-link">Następna</a>
     </li>
     @endif
 </ul>
@@ -47,7 +51,7 @@
             active
         @endif
         ">
-            <a href="{{ url()->current() }}?page={{ $current_page }}&limit={{ $limit }}" class="page-link">{{ $limit }}</a>
+            <a href="{{ url()->current() }}?page={{ $current_page }}&limit={{ $limit }}&q={{ $q }}" class="page-link">{{ $limit }}</a>
         </li>
     @endforeach
 </ul>

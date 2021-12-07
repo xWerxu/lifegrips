@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VariantController;
 use Illuminate\Support\Facades\Route;
 
@@ -133,3 +134,11 @@ Route::get('/admin/zamowienia/{id}', [OrderController::class, 'edit'])
 Route::put('/admin/zamowienia/{id}', [OrderController::class, 'update'])
                 ->middleware('admin')
                 ->name('admin.order.update');
+
+Route::get('/admin/klienci', [UsersController::class, 'adminIndex'])
+                ->middleware('admin')
+                ->name('admin.customer.index');
+
+Route::get('/admin/klienci/{id}', [UsersController::class, 'adminShow'])
+                ->middleware('admin')
+                ->name('admin.customer.show');
