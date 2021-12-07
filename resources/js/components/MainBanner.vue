@@ -1,7 +1,7 @@
 <template>
     <div
-        class="container-fluid px-0 slider-style overflow-hidden background_img"
-        :style="{ backgroundImage: 'url(' + src_img + ')' }"
+        class="container-fluid mb-5 slider-style overflow-hidden background_img"
+        :style="{ backgroundImage: 'url(' + src_img + ')'}"
     >
         <div class="hero-text"> <h2>Największy wybór płyt </h2></div>
     </div>
@@ -25,7 +25,7 @@ export default {
 }
 
 .background_img{
-    background-position: center center;    
+    background-position: center;    
 }
 
 .hero-text {
