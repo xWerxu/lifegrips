@@ -1,7 +1,7 @@
 <template>
-<div class="mb-5">
+<div class="mb-5 shadow-bottom">
     <div class="container-fluid label-up ">
-        <div class="container pl-5">
+        <div class="container pl-5 pb-3 pt-2">
             <div class="row d-flex">
                 <div class="col justify-content-start label-text mt-4 centered">
                     <h2>Drake w Lifegrips</h2>
@@ -28,20 +28,43 @@
 
 <script>
 export default {
+    data() {
+        backgroundColor = 2
+        return{
+            backgroundColor
+        }
+},
+
     props: {
         src_img: String,
-        }
+        },
+
+    methods: {
+        
+    },
 }
 </script>
 
 <style scoped>
 
 .label-up{
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(172, 172, 172);
 }
 
 .label-down{
     background-color: rgb(36, 36, 36);
+}
+
+.shadow-bottom{
+    -webkit-box-shadow: 0px 34px 0px 0px rgba(0, 0, 0, 1);
+-moz-box-shadow: 0px 34px 0px 0px rgba(0, 0, 0, 1);
+box-shadow: 0px 34px 0px 0px rgba(0, 0, 0, 1);
+}
+
+img {
+-webkit-box-shadow: 14px -14px 0px 0px rgba(192, 192, 192, 1);
+-moz-box-shadow: 14px -14px 0px 0px rgba(192, 192, 192, 1);
+box-shadow: 14px -14px 0px 0px rgba(192, 192, 192, 1);
 }
 
 

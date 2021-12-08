@@ -29,12 +29,10 @@ export default {
 }
 
 .hero-text {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    color: white;
 }
 
 @media only screen and (max-width: 600px) {
