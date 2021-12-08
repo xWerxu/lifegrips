@@ -109,6 +109,12 @@
                       <span>Zamówienia</span>
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ route('admin.customer.index') }}" class="nav-link px-3 active">
+                      <span class="me-2"><i class="bi bi-person"></i></span>
+                      <span>Klienci</span>
+                    </a>
+                  </li>
               </ul>
           </nav>
         </div>

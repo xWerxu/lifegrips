@@ -17,4 +17,15 @@ class ShopController extends Controller
             'products' => $products
         ]);
     }
+
+    public function product($id){
+        $product = Product::find($id);
+        $product->load('mainVariant');
+        $product->load('variants');
+        $product->load('categories');
+
+        return view('shop.product', [
+            'product' => json_encode($product)
+        ]);
+    }
 }

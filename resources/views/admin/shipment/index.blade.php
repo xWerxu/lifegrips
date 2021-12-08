@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1><i class="bi bi-list-ul mt-0 mt-md-5"></i>Opcje dostawy</h1>
+<h1><i class="bi bi-list-ul mt-0 mt-md-5 me-2"></i>Opcje dostawy</h1>
 <hr class="divider">
 @if (session('success'))
       <div class="alert alert-success">

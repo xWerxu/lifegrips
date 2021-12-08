@@ -21,12 +21,14 @@ class ProductController extends Controller
     public function adminIndex(Request $request){
         $page = $request->has('page') ? $request->get('page') : 1;
         $limit = $request->has('limit') ? $request->get('limit') : 10;
+        $search = $request->has('q') ? $request->get('q') : '';
 
         $max = Product::count();
         $pages = ceil($max/$limit);
         $limits = [10, 25, 50];
 
-        $products = Product::all()->skip(($page - 1) * $limit)->take($limit);
+        $variants = Variant::where('name', 'like', '%'.$search.'%')->skip(($page - 1) * $limit)->take($limit)->pluck('id')->toArray();
+        $products = Product::whereIn('main_variant', $variants)->get();
 
         return view('admin.products.index', [
             'products' => $products,
@@ -34,7 +36,9 @@ class ProductController extends Controller
             'pages' => $pages,
             'current_page' => $page,
             'current_limit' => $limit,
-            'limits' => $limits
+            'limits' => $limits,
+            'test' => $variants,
+            'q' => $search
         ]);
     }
 

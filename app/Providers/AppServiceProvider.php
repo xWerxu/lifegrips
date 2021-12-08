@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('layouts.app', function($view){
             $categories = Category::whereNull('parent_id')
-            ->with('childrenCategories')
+            ->with('categories')
             ->get();
             $view->with('categories', $categories);
         });

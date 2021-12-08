@@ -58,20 +58,33 @@
             </div>
         </div>
         <div class="col-lg-6 col-sm-12">
-            <h2 class="mt-3">Dane adresowe</h2>
-            <hr>
-            <h4>Imię i nazwisko:</h4>
-            <p>{{ $order->first_name . ' ' . $order->last_name }}</p>
-            <h4>E-mail</h4>
-            <p>{{ $order->mail }}</p>
-            <h4>Numer telefonu</h4>
-            <p>{{ $order->phone }}</p>
-            <h4>Miejscowość</h4>
-            <p>{{ $order->city }}</p>
-            <h4>Adres zamieszkania</h4>
-            <p>{{ $order->address }}</p>
-            <h4>Kod pocztowy</h4>
-            <p>{{ $order->zip }}</p>
+            <div class="row">
+                <h2 class="mt-3">Dane zamówienia</h2>
+                <hr>
+                <h4>Imię i nazwisko:</h4>
+                <p>{{ $order->first_name . ' ' . $order->last_name }}</p>
+                <h4>E-mail</h4>
+                <p>{{ $order->mail }}</p>
+                <h4>Numer telefonu</h4>
+                <p>{{ $order->phone }}</p>
+                <h4>Miejscowość</h4>
+                <p>{{ $order->city }}</p>
+                <h4>Adres zamieszkania</h4>
+                <p>{{ $order->address }}</p>
+                <h4>Kod pocztowy</h4>
+                <p>{{ $order->zip }}</p>
+                <h4>Metoda dostawy</h4>
+                <p>{{ $order->shipment->name }}</p>
+                <h4>Metoda płatności</h4>
+                <p>{{ $order->payment->name }}</p>
+                @if ($order->cart->coupon_id)
+                    @php
+                        $coupon = $order->cart->coupon;
+                    @endphp
+                    <h4>Użyty kod rabatowy</h4>
+                    <p>{{ $coupon->coupon }} ({{ $coupon->promotion }}% rabatu, {{ $coupon->shipment == 1 ? 'darmowa dostawa' : ''}})</p>
+                @endif
+            </div>
         </div>
     </div>
 </div>
