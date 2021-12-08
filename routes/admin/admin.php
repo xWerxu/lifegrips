@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\OrderController;
@@ -142,3 +143,27 @@ Route::get('/admin/klienci', [UsersController::class, 'adminIndex'])
 Route::get('/admin/klienci/{id}', [UsersController::class, 'adminShow'])
                 ->middleware('admin')
                 ->name('admin.customer.show');
+
+Route::get('/admin/wpisy', [ArticleController::class, 'index'])
+                ->middleware('admin')
+                ->name('admin.article.index');
+
+Route::get('/admin/wpisy/nowy', [ArticleController::class, 'create'])
+                ->middleware('admin')
+                ->name('admin.article.create');
+
+Route::post('/admin/wpisy/nowy', [ArticleController::class, 'postCreate'])
+                ->middleware('admin')
+                ->name('admin.article.create');
+
+Route::delete('/admin/wpisy/usun', [ArticleController::class, 'delete'])
+                ->middleware('admin')
+                ->name('admin.article.delete');
+
+Route::get('/admin/wpisy/{id}', [ArticleController::class, 'edit'])
+                ->middleware('admin')
+                ->name('admin.article.edit');
+
+Route::put('/admin/wpisy', [ArticleController::class, 'update'])
+                ->middleware('admin')
+                ->name('admin.article.update');

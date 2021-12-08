@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -9,12 +10,14 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
     public function index(){
-        $categories = Category::whereNull('parent_id')->get();
         $products = Product::where('available', 1)->get();
 
+        $articles = Article::where('published', 1)->get();
+        $articles->load('products');
+
         return view('shop.index', [
-            'categories' => $categories,
-            'products' => $products
+            'products' => $products,
+            'articles' => json_encode($articles)
         ]);
     }
 

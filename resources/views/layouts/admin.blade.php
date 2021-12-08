@@ -115,6 +115,12 @@
                       <span>Klienci</span>
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ route('admin.article.index') }}" class="nav-link px-3 active">
+                      <span class="me-2"><i class="bi bi-collection"></i></span>
+                      <span>Wpisy</span>
+                    </a>
+                  </li>
               </ul>
           </nav>
         </div>
