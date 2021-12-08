@@ -22409,9 +22409,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    backgroundColor = 2;
+    return {
+      backgroundColor: backgroundColor
+    };
+  },
   props: {
     src_img: String
-  }
+  },
+  methods: {}
 });
 
 /***/ }),
@@ -22505,13 +22512,13 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "mb-5"
+  "class": "mb-5 shadow-bottom"
 };
 var _hoisted_2 = {
   "class": "container-fluid label-up"
 };
 var _hoisted_3 = {
-  "class": "container pl-5"
+  "class": "container pl-5 pb-3 pt-2"
 };
 var _hoisted_4 = {
   "class": "row d-flex"
@@ -27865,7 +27872,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.label-up[data-v-0744aac7]{\n    background-color: rgb(70, 70, 70);\n}\n.label-down[data-v-0744aac7]{\n    background-color: rgb(36, 36, 36);\n}\n\n\n\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.label-up[data-v-0744aac7]{\n    background-color: rgb(172, 172, 172);\n}\n.label-down[data-v-0744aac7]{\n    background-color: rgb(36, 36, 36);\n}\n.shadow-bottom[data-v-0744aac7]{\nbox-shadow: 0px 34px 0px 0px rgba(0, 0, 0, 1);\n}\nimg[data-v-0744aac7] {\nbox-shadow: 14px -14px 0px 0px rgba(192, 192, 192, 1);\n}\n\n\n\n\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27889,7 +27896,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.slider-style[data-v-722b8470] {\n    height: 400px;\n    background-color: rgb(172, 172, 172);\n}\n.container-fluid[data-v-722b8470] {\n    /* background-image: cock.jpg; */\n    /* filter: brightness(); */\n}\n.background_img[data-v-722b8470]{\n    background-position: center;\n}\n.hero-text[data-v-722b8470] {\n  text-align: center;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  color: white;\n}\n@media only screen and (max-width: 600px) {\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.slider-style[data-v-722b8470] {\n    height: 400px;\n    background-color: rgb(172, 172, 172);\n}\n.container-fluid[data-v-722b8470] {\n    /* background-image: cock.jpg; */\n    /* filter: brightness(); */\n}\n.background_img[data-v-722b8470]{\n    background-position: center;\n}\n.hero-text[data-v-722b8470] {\n    margin: auto;\n    width: 50%;\n    padding: 10px;\n    color: white;\n}\n@media only screen and (max-width: 600px) {\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
