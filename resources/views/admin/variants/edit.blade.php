@@ -5,6 +5,7 @@
 <hr class="divider">
 
 <div class="container">
+    {{-- {{dd($filters)}} --}}
     <form class="form" method="POST" action="{{ route('admin.variant.update') }}"  enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="variant_id" value="{{ $variant->id }}">
@@ -62,6 +63,20 @@
                         @enderror
                     </div>
                 </div>
+                @if (count($filters) > 0)
+                    <div class="row mt-3">
+                        <h2>Cechy wariantu</h2>
+                        <p class="text-secondary">Zostaw puste, jeśli chcesz daną cechę usunąć</p>
+                        <div class="row">
+                            @foreach ($filters as $id => $filter)
+                                <div class="col-6">
+                                    <label class="form-label">{{ $filter['name'] }}</label>
+                                    <input type="text" class="form-control" value="{{ $filter['value'] }}" name="filters[{{ $id }}]">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
                 <div class="form-check mt-3">
                     <input id="available" name="available" type="checkbox" class="form-check-input"
                     @if ($variant->available == true)

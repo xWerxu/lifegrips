@@ -31,4 +31,9 @@ class Variant extends Model
     public function product(){
         return $this->hasOne(Product::class, 'product_id', 'product_id');
     }
+
+    public function filters(){
+        return $this->belongsToMany(Filter::class, 'filter_variant', 'variant_id', 'filter_id')
+        ->withPivot('value');
+    }
 }

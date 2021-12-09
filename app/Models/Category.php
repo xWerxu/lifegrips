@@ -42,4 +42,8 @@ class Category extends Model
     public function products(){
         return $this->belongsToMany(Product::class);
     }
+
+    public function filters(){
+        return $this->belongsToMany(Filter::class, 'category_filter', 'category_id', 'filter_id');
+    }
 }

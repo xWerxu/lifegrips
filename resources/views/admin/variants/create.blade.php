@@ -47,6 +47,20 @@
                         @enderror
                     </div>
                 </div>
+                @if (count($filters) > 0)
+                    <div class="row mt-3">
+                        <h2>Cechy wariantu</h2>
+                        <p class="text-secondary">Zostaw puste, jeśli chcesz daną cechę usunąć</p>
+                        <div class="row">
+                            @foreach ($filters as $id => $filter)
+                                <div class="col-6">
+                                    <label class="form-label">{{ $filter['name'] }}</label>
+                                    <input type="text" class="form-control" name="filters[{{ $id }}]">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
                 <div class="form-check mt-3">
                     <input id="available" name="available" checked type="checkbox" class="form-check-input">
                     <label for="available" class="form-check-label">Dostępny</label>

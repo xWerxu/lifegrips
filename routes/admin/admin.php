@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -167,3 +168,22 @@ Route::get('/admin/wpisy/{id}', [ArticleController::class, 'edit'])
 Route::put('/admin/wpisy', [ArticleController::class, 'update'])
                 ->middleware('admin')
                 ->name('admin.article.update');
+
+Route::get('/admin/filtry', [FilterController::class, 'index'])
+                ->middleware('admin')
+                ->name('admin.filter.index');
+
+Route::get('/api/find-filter', [FilterController::class, 'findFilter'])
+                ->name('api.find-filter');
+
+Route::post('/admin/filtry', [FilterController::class, 'create'])
+                ->middleware('admin')
+                ->name('admin.filter.create');
+
+Route::delete('/admin/filtry', [FilterController::class, 'delete'])
+                ->middleware('admin')
+                ->name('admin.filter.delete');
+
+Route::put('/admin/filtry', [FilterController::class, 'update'])
+                ->middleware('admin')
+                ->name('admin.filter.update');

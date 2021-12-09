@@ -28,7 +28,8 @@ class VariantRequest extends FormRequest
             'main' => 'required|image|mimes:png,jpg|max:2048|dimensions:min_width=350,min_height=350,max_width=1000,max_height=1000',
             'adds.*' => 'image|mimes:png,jpg|max:2048|dimensions:min_width=350,min_height=350,max_width=1000,max_height=1000',
             'price' => 'required|regex:/^\d+(\.\d{1,2})?$/|min:0',
-            'on_stock' => 'required|numeric|min:0'
+            'on_stock' => 'required|numeric|min:0',
+            'filters.*' => 'max:255',
         ];
     }
 
@@ -44,6 +45,7 @@ class VariantRequest extends FormRequest
             'price.regex' => 'Format ceny to: xx.xx',
             'on_stock.numeric' => 'Wartość musi być liczbą',
             '*.min' => 'Wartość musi być nieujemna',
+            'filters.max' => 'Cecha może zawierać max 255 znaków'
         ];
     }
 }

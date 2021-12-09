@@ -14,10 +14,25 @@ use Intervention\Image\Facades\Image as Imagee;
 class VariantController extends Controller
 {
     public function create($product_id){
-        
+        $product = Product::find($product_id);
+        $categories = $product->categories;
+        $categories->load('filters');
+
+        $filters = [];
+        foreach ($categories as $category){
+            foreach ($category->filters as $filter){
+                if (!isset($filters[$filter->id])){
+                    $filters[$filter->id] = [
+                        'name' => $filter->name,
+                    ];
+                }
+            }
+        }
+                
 
         return view('admin.variants.create', [
             'product_id' => $product_id,
+            'filters' => $filters
         ]);
     }
 
@@ -61,6 +76,17 @@ class VariantController extends Controller
             }
         }
 
+        if (isset($request->filters)){
+            foreach ($request->filters as $id => $value){
+                if ($value == ""){
+                    $variant->filters()->detach($id);
+                }else{
+                    $variant->filters()->attach($id, ['value' => $value]);
+                }
+                
+            }
+        }
+
         return redirect()->route('admin.product.edit', ['id' => $request->product_id]);
 
     }
@@ -100,9 +126,33 @@ class VariantController extends Controller
         $variant = Variant::find($id);
         $product = Product::find($variant->product_id);
 
+        $categories = $product->categories;
+        $categories->load('filters');
+
+        $filters = [];
+
+        foreach ($variant->filters as $filter){
+            $filters[$filter->id] = [
+                'name' => $filter->name,
+                'value' => $filter->pivot->value,
+            ];
+        }
+
+        foreach ($categories as $category){
+            foreach ($category->filters as $filter){
+                if (!isset($filters[$filter->id])){
+                    $filters[$filter->id] = [
+                        'name' => $filter->name,
+                        'value' => ''
+                    ];
+                }
+            }
+        }
+
         return view('admin.variants.edit', [
             'variant' => $variant,
-            'product' => $product
+            'product' => $product,
+            'filters' => $filters
         ]);
     }
 
@@ -163,6 +213,17 @@ class VariantController extends Controller
                 }
         
                 $image->forceDelete();
+            }
+        }
+
+        if (isset($request->filters)){
+            foreach ($request->filters as $id => $value){
+                if ($value == ""){
+                    $variant->filters()->detach($id);
+                }else{
+                    $variant->filters()->attach($id, ['value' => $value]);
+                }
+                
             }
         }
 
