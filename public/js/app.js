@@ -22410,9 +22410,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    var backgroundColor = 2;
+    var text_color = "#ffffff";
     return {
-      backgroundColor: backgroundColor
+      text_color: text_color
     };
   },
   props: {
@@ -22429,6 +22429,19 @@ __webpack_require__.r(__webpack_exports__);
       products: Array,
       created_at: String,
       updated_at: String
+    },
+    computed: {
+      getContrastYIQ: function getContrastYIQ(hexcolor) {
+        hexcolor = hexcolor.replace("#", "");
+        var r = parseInt(hexcolor.substr(0, 2), 16);
+        var g = parseInt(hexcolor.substr(2, 2), 16);
+        var b = parseInt(hexcolor.substr(4, 2), 16);
+        var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+
+        if (yiq >= 128) {
+          this.text_color = "#ffffff";
+        } else this.text_color = "#00000";
+      }
     }
   }
 });
@@ -22537,15 +22550,9 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "row d-flex"
 };
-
-var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col justify-content-start label-text mt-4 centered"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Drake w Lifegrips"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Sprawdź jego twórczość!")], -1
-  /* HOISTED */
-  );
-});
-
+var _hoisted_4 = {
+  "class": "col justify-content-start label-text mt-4 centered"
+};
 var _hoisted_5 = {
   "class": "col justify-content-end pt-4"
 };
@@ -22569,7 +22576,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
       backgroundColor: $props.data.background_color
     })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.title), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.short_description), 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $props.data.image
   }, null, 8
   /* PROPS */

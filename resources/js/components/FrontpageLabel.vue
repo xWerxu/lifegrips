@@ -2,7 +2,7 @@
     <div class="mb-5 shadow-bottom">
         <div
             class="container-fluid label-up"
-            :style="{ backgroundColor: data.background_color }"
+            :style="{ backgroundColor: data.background_color}"
         >
             <div class="container pl-5 pb-3 pt-2">
                 <div class="row d-flex">
@@ -15,8 +15,8 @@
                             centered
                         "
                     >
-                        <h2>Drake w Lifegrips</h2>
-                        <h4>Sprawdź jego twórczość!</h4>
+                        <h2>{{ data.title }}</h2>
+                        <h4>{{ data.short_description }}</h4>
                     </div>
                     <div class="col justify-content-end pt-4">
                         <img :src="data.image" />
@@ -33,11 +33,13 @@
 </template>
 
 <script>
+
+
 export default {
     data() {
-        const backgroundColor = 2;
+        const text_color = "#ffffff";
         return {
-            backgroundColor,
+            text_color,
         };
     },
 
@@ -56,6 +58,19 @@ export default {
             created_at: String,
             updated_at: String,
         },
+    computed:{
+    getContrastYIQ(hexcolor){
+    hexcolor = hexcolor.replace("#", "");
+    const r = parseInt(hexcolor.substr(0,2),16);
+    const g = parseInt(hexcolor.substr(2,2),16);
+    const b = parseInt(hexcolor.substr(4,2),16);
+    const yiq = ((r*299)+(g*587)+(b*114))/1000;
+            if (yiq >= 128){
+            this.text_color = "#ffffff";
+        }else this.text_color = "#00000";
+}
+    }
+
     },
 };
 </script>
