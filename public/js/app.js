@@ -22408,12 +22408,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    var text_color = "#ffffff";
-    return {
-      text_color: text_color
-    };
+    return {};
   },
   props: {
     data: {
@@ -22431,16 +22430,19 @@ __webpack_require__.r(__webpack_exports__);
       updated_at: String
     },
     computed: {
-      getContrastYIQ: function getContrastYIQ(hexcolor) {
-        hexcolor = hexcolor.replace("#", "");
+      font_color: function font_color() {
+        var hexcolor = background_color.replace("#", "");
         var r = parseInt(hexcolor.substr(0, 2), 16);
         var g = parseInt(hexcolor.substr(2, 2), 16);
         var b = parseInt(hexcolor.substr(4, 2), 16);
         var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+        var color_value = "#ffffff";
 
         if (yiq >= 128) {
-          this.text_color = "#ffffff";
-        } else this.text_color = "#00000";
+          "#ffffff", _readOnlyError("color_value");
+        } else "#00000", _readOnlyError("color_value");
+
+        return color_value;
       }
     }
   }
@@ -22574,7 +22576,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "container-fluid label-up",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
-      backgroundColor: $props.data.background_color
+      backgroundColor: $props.data.background_color,
+      color: _ctx.font_color
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data.title), 1
   /* TEXT */

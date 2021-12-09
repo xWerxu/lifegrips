@@ -2,7 +2,7 @@
     <div class="mb-5 shadow-bottom">
         <div
             class="container-fluid label-up"
-            :style="{ backgroundColor: data.background_color}"
+            :style="{ backgroundColor: data.background_color, color: font_color}"
         >
             <div class="container pl-5 pb-3 pt-2">
                 <div class="row d-flex">
@@ -37,9 +37,7 @@
 
 export default {
     data() {
-        const text_color = "#ffffff";
         return {
-            text_color,
         };
     },
 
@@ -59,15 +57,17 @@ export default {
             updated_at: String,
         },
     computed:{
-    getContrastYIQ(hexcolor){
-    hexcolor = hexcolor.replace("#", "");
+    font_color(){
+    const hexcolor = background_color.replace("#", "");
     const r = parseInt(hexcolor.substr(0,2),16);
     const g = parseInt(hexcolor.substr(2,2),16);
     const b = parseInt(hexcolor.substr(4,2),16);
     const yiq = ((r*299)+(g*587)+(b*114))/1000;
+    const color_value = "#ffffff";
             if (yiq >= 128){
-            this.text_color = "#ffffff";
-        }else this.text_color = "#00000";
+            color_value = "#ffffff";
+        }else color_value = "#00000";
+        return color_value
 }
     }
 
