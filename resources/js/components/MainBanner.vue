@@ -1,15 +1,20 @@
 <template>
     <div
         class="container-fluid mb-5 slider-style overflow-hidden background_img"
-        :style="{ backgroundImage: 'url(' + src_img + ')'}"
+        :style="{ backgroundImage: image_url }"
     >
-        <div class="hero-text"> <h2>Największy wybór płyt </h2></div>
+        <div class="hero-text"><h2>Największy wybór płyt</h2></div>
     </div>
 </template>
 
 <script>
 export default {
     props: ["src_img"],
+    computed: {
+        image_url() {
+            return "url( " + this.src_img + " )";
+        },
+    },
 };
 </script>
 
@@ -24,8 +29,8 @@ export default {
     /* filter: brightness(); */
 }
 
-.background_img{
-    background-position: center;    
+.background_img {
+    background-position: center;
 }
 
 .hero-text {
@@ -36,11 +41,5 @@ export default {
 }
 
 @media only screen and (max-width: 600px) {
-
-
-
-
-
 }
-
 </style>

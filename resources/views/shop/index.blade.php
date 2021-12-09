@@ -17,8 +17,14 @@
         @endforeach
     </div> Komentuje to bo chce cokolwiek ruszyć a później będzie sie z tym bawiło -->
     <main-banner src_img="{{ asset('images/layout_banner.jpg') }}"></main-banner>
-    <frontpage-label src_img="{{ asset('images/label_image/drake1.png') }}"></frontpage-label>
-    <frontpage-label src_img="{{ asset('images/label_image/drake1.png') }}"></frontpage-label>
+
+
+    <div v-for="article in {{ $articles }}" :key="article.id">
+    <frontpage-label :data ="article"></frontpage-label>";
+    </div>
+    
+    
+
 
 
 

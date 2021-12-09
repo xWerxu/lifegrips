@@ -1,14 +1,10 @@
 <template>
     <nav class="navbar navbar-dark bg-dark">
-        <div class="container">
-            <ul class="navbar-nav">
-                <div class="d-flex flex-row justify-content-center">
-                    <li>
-                        <a class="navbar-brand mx-auto" href="/">Lifegrips</a>
-                    </li>
-                </div>
-            </ul>
-        </div>
+        <ul class="navbar-nav">
+            <li>
+                <a class="navbar-brand" href="/">Lifegrips</a>
+            </li>
+        </ul>
     </nav>
 </template>
 
@@ -18,4 +14,9 @@
 export default {};
 </script>
 
-<style scoped></style>
+<style scoped>
+.navbar-nav {
+    padding-left: 49%;
+    padding-right: 51%;
+}
+</style>
