@@ -2,9 +2,10 @@
     <div class="mb-5 shadow-bottom">
         <div
             class="container-fluid label-up"
-            :style="{ backgroundColor: data.background_color, color: font_color}"
+            :style="{ backgroundColor: data.background_color }"
         >
             <div class="container pl-5 pb-3 pt-2">
+                <div v-if="data.image_position">
                 <div class="row d-flex">
                     <div
                         class="
@@ -22,6 +23,26 @@
                         <img :src="data.image" />
                     </div>
                 </div>
+                </div>
+                <div v-else>
+                    <div class="row d-flex">
+                    <div class="col justify-content-start pt-4">
+                        <img :src="data.image" />
+                    </div>
+                                        <div
+                        class="
+                            col
+                            justify-content-end
+                            label-text
+                            mt-4
+                            centered
+                        "
+                    >
+                        <h2>{{ data.title }}</h2>
+                        <h4>{{ data.short_description }}</h4>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
         <div class="container-fluid label-down">
@@ -38,6 +59,7 @@
 export default {
     data() {
         return {
+            
         };
     },
 
