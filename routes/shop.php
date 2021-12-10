@@ -26,4 +26,5 @@ Route::get('/koszyk/zamowienie', [OrderController::class, 'makeOrder'])
 Route::post('/koszyk/zamowienie', [OrderController::class, 'postOrder'])
                 ->name('cart.post-order');
 
-Route::get('/sklep/produkt/{id}', [ShopController::class, 'product']);
+Route::get('/sklep/produkt/{id}', [ShopController::class, 'product'])
+                ->name('shop.product');
