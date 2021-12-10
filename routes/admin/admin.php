@@ -187,3 +187,11 @@ Route::delete('/admin/filtry', [FilterController::class, 'delete'])
 Route::put('/admin/filtry', [FilterController::class, 'update'])
                 ->middleware('admin')
                 ->name('admin.filter.update');
+
+Route::get('/admin/pracownicy', [UsersController::class, 'employees'])
+                ->middleware('actualAdmin')
+                ->name('admin.employees.index');
+
+Route::put('/admin/pracownicy', [UsersController::class, 'updateEmployee'])
+                ->middleware('actualAdmin')
+                ->name('admin.employees.updateEmployee');

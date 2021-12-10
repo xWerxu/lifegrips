@@ -40,11 +40,11 @@ class UsersController extends Controller
         $limit = $request->has('limit') ? $request->get('limit') : 25;
         $search = $request->has('q') ? $request->get('q') : '';
 
-        $max = User::where('role', 'client')->count();
+        $max = User::where('role', 'customer')->count();
         $pages = ceil($max/$limit);
         $limits = [25, 50, 100];
 
-        $customers = User::where('role', 'customer')->where('email', 'like', '%'.$search.'%')->get();
+        $customers = User::where('role', 'customer')->where('email', 'like', '%'.$search.'%')->skip(($page - 1) * $limit)->get($limit);
 
         return view('admin.customers.index', [
             'customers' => $customers,
@@ -70,5 +70,45 @@ class UsersController extends Controller
             'customer' => $customer,
             'orders' => $orders,
         ]);
+    }
+
+    public function employees(Request $request){
+        $page = $request->has('page') ? $request->get('page') : 1;
+        $limit = $request->has('limit') ? $request->get('limit') : 25;
+        $search = $request->has('q') ? $request->get('q') : '';
+
+        $max = User::where('role', 'customer')->count();
+        $pages = ceil($max/$limit);
+        $limits = [25, 50, 100];
+
+        $customers = User::where('role', 'customer')->where('email', 'like', '%'.$search.'%')->skip(($page - 1) * $limit)->take($limit)->get();
+        $employees = User::where('role', 'employee')->get();
+
+        return view ('admin.employee.index', [
+            'employees' => $employees,
+            'customers' => $customers,
+            'max' => $max,
+            'pages' => $pages,
+            'current_page' => $page,
+            'current_limit' => $limit,
+            'limits' => $limits,
+            'q' => $search,
+        ]);
+    }
+
+    public function updateEmployee(Request $request){
+        $user = User::find($request->user_id);
+
+        if (isset($request->employed)){
+            $user->role = 'employee';
+            $msg = 'Użytwkonik ' . $user->email . ' jest teraz pracownikiem';
+        }
+        elseif (isset($request->unemployed)){
+            $user->role = 'customer';
+            $msg = 'Użytkownik ' . $user->email . ' już nie jest pracownikiem';
+        }
+        $user->save();
+
+        return redirect()->route('admin.employees.index')->with('success', $msg);
     }
 }
