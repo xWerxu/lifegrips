@@ -13,10 +13,13 @@
 <script>
 export default {};
 </script>
-
+ 
 <style scoped>
+
 .navbar-nav {
-    padding-left: 49%;
-    padding-right: 51%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
 }
 </style>

@@ -49,8 +49,8 @@ export default {
 
 <style scoped>
 li {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    display: flex;
+    flex-wrap: row
 }
 
 a {

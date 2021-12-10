@@ -38,6 +38,8 @@ export default {
     width: 50%;
     padding: 10px;
     color: white;
+    text-align: center;
+    margin-top: 130px;
 }
 
 @media only screen and (max-width: 600px) {
