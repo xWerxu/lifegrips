@@ -68,58 +68,102 @@
                   <li class="my-4">
                       <hr class="dropdown-divider">
                   </li>
+
                   <li>
-                      <div class="text-muted small px-3 fw-bold">
-                          Sklep
-                      </div>
+                    <div class="text-muted small px-3 fw-bold">
+                      Sklep
+                    </div>
                   </li>
-                  <li>
+                    <li>
                       <a href="{{ route('admin.category.index') }}" class="nav-link px-3 active">
                           <span class="me-2"><i class="bi bi-tags"></i></span>
                           <span>Kategorie</span>
                       </a>
-                  </li>
-                  <li>
-                      <a href="{{ route('admin.product.index') }}" class="nav-link px-3 active">
-                        <span class="me-2"><i class="bi bi-disc"></i></span>
-                        <span>Produkty</span>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.product.index') }}" class="nav-link px-3 active">
+                          <span class="me-2"><i class="bi bi-disc"></i></span>
+                          <span>Produkty</span>
+                        </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('admin.filter.index') }}" class="nav-link px-3 active">
+                        <span class="me-2"><i class="bi bi-funnel"></i></span>
+                        <span>Filtry</span>
                       </a>
+                    </li>
+                  <li class="my-4">
+                    <hr class="dropdown-divider">
                   </li>
                   <li>
-                    <a href="{{ route('admin.shipment.index') }}" class="nav-link px-3 active">
-                      <span class="me-2"><i class="bi bi-truck"></i></span>
-                      <span>Dostawy</span>
-                    </a>
+                    <div class="text-muted small px-3 fw-bold">
+                      Marketing
+                    </div>
                   </li>
-                  <li>
-                    <a href="{{ route('admin.payment.index') }}" class="nav-link px-3 active">
-                      <span class="me-2"><i class="bi bi-credit-card"></i></span>
-                      <span>Płatności</span>
-                    </a>
+                    <li>
+                      <a href="{{ route('admin.coupon.index') }}" class="nav-link px-3 active">
+                        <span class="me-2"><i class="bi bi-cash-coin"></i></span>
+                        <span>Kody rabatowe</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('admin.article.index') }}" class="nav-link px-3 active">
+                        <span class="me-2"><i class="bi bi-collection"></i></span>
+                        <span>Wpisy</span>
+                      </a>
+                    </li>
+                  <li class="my-4">
+                    <hr class="dropdown-divider">
                   </li>
+
                   <li>
-                    <a href="{{ route('admin.coupon.index') }}" class="nav-link px-3 active">
-                      <span class="me-2"><i class="bi bi-cash-coin"></i></span>
-                      <span>Kody rabatowe</span>
-                    </a>
+                    <div class="text-muted small px-3 fw-bold">
+                      Użytkownicy
+                    </div>
                   </li>
-                  <li>
-                    <a href="{{ route('admin.order.index') }}" class="nav-link px-3 active">
-                      <span class="me-2"><i class="bi bi-bag-check"></i></span>
-                      <span>Zamówienia</span>
-                    </a>
+                    <li>
+                      <a href="{{ route('admin.customer.index') }}" class="nav-link px-3 active">
+                        <span class="me-2"><i class="bi bi-person"></i></span>
+                        <span>Klienci</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('admin.order.index') }}" class="nav-link px-3 active">
+                        <span class="me-2"><i class="bi bi-bag-check"></i></span>
+                        <span>Zamówienia</span>
+                      </a>
+                    </li>
+                    @if (Auth::user()->role == "admin")
+                    <li>
+                      <a href="{{ route('admin.employees.index') }}" class="nav-link px-3 active">
+                        <span class="me-2"><i class="bi bi-person-badge"></i></span>
+                        <span>Pracownicy</span>
+                      </a>
+                    </li>  
+                    @endif
+                  <li class="my-4">
+                    <hr class="dropdown-divider">
                   </li>
+
                   <li>
-                    <a href="{{ route('admin.customer.index') }}" class="nav-link px-3 active">
-                      <span class="me-2"><i class="bi bi-person"></i></span>
-                      <span>Klienci</span>
-                    </a>
+                      <div class="text-muted small px-3 fw-bold">
+                          Struktura
+                      </div>
                   </li>
-                  <li>
-                    <a href="{{ route('admin.article.index') }}" class="nav-link px-3 active">
-                      <span class="me-2"><i class="bi bi-collection"></i></span>
-                      <span>Wpisy</span>
-                    </a>
+                    <li>
+                      <a href="{{ route('admin.shipment.index') }}" class="nav-link px-3 active">
+                        <span class="me-2"><i class="bi bi-truck"></i></span>
+                        <span>Dostawy</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('admin.payment.index') }}" class="nav-link px-3 active">
+                        <span class="me-2"><i class="bi bi-credit-card"></i></span>
+                        <span>Płatności</span>
+                      </a>
+                    </li>
+                  <li class="my-4">
+                    <hr class="dropdown-divider">
                   </li>
               </ul>
           </nav>
