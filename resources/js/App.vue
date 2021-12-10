@@ -1,9 +1,9 @@
 <script>
 import ProductCard from "./components/ProductCard.vue";
 import MainNavbar from "./components/MainNavbar.vue";
-import MainBanner from "./components/MainBanner.vue";
+import MainBanner from "./components/main_page/MainBanner.vue";
 import SubNav from "./components/SubNav.vue";
-import FrontpageLabel from "./components/FrontpageLabel.vue";
+import FrontpageLabel from "./components/main_page/FrontpageLabel.vue";
 
 export default {
     data() {
