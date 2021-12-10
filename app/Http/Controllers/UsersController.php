@@ -44,7 +44,7 @@ class UsersController extends Controller
         $pages = ceil($max/$limit);
         $limits = [25, 50, 100];
 
-        $customers = User::where('role', 'customer')->where('email', 'like', '%'.$search.'%')->skip(($page - 1) * $limit)->get($limit);
+        $customers = User::where('role', 'customer')->where('email', 'like', '%'.$search.'%')->skip(($page - 1) * $limit)->take($limit)->get();
 
         return view('admin.customers.index', [
             'customers' => $customers,

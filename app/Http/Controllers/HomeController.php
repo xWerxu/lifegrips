@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
+use App\Models\Article;
 
 
 class HomeController extends Controller
@@ -26,8 +28,14 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('homepage', [
-            'user' => Auth::user(),
+        $products = Product::where('available', 1)->get();
+
+        $articles = Article::where('published', 1)->get();
+        $articles->load('products');
+
+        return view('shop.index', [
+            'products' => $products,
+            'articles' => json_encode($articles)
         ]);
     }
 }

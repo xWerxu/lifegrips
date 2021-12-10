@@ -11,13 +11,13 @@ class ShopController extends Controller
 {
     public function index(){
         $products = Product::where('available', 1)->get();
+        $categories = Category::whereNull('parent_id')->get();
+        $categories->load('categories');
 
-        $articles = Article::where('published', 1)->get();
-        $articles->load('products');
 
-        return view('shop.index', [
+        return view('shop.products', [
             'products' => $products,
-            'articles' => json_encode($articles)
+            'categories' => $categories
         ]);
     }
 
