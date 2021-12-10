@@ -135,4 +135,26 @@
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
 
+<script>
+
+      $(".add-item").click(function () {
+      var id = $(this).data("id");
+      var quantity = $(this).data("quantity");
+      var token = $("meta[name='csrf-token']").attr("content");
+
+      $.ajax({
+          url: "{{ route('add-to-cart') }}",
+          type: "POST",
+          data: {
+              variant_id: id,
+              _token: token,
+              quantity: quantity,
+          },
+      }).done(function (data) {
+          console.log(data);
+      });
+        });
+
+</script>
+
 </html>

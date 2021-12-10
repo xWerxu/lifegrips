@@ -22375,24 +22375,7 @@ __webpack_require__.r(__webpack_exports__);
     MainBanner: _components_main_page_MainBanner_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     FrontpageLabel: _components_main_page_FrontpageLabel_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  mounted: function mounted() {
-    $(".add-item").click(function () {
-      var id = $(this).data("id");
-      var quantity = $(this).data("quantity");
-      var token = $("meta[name='csrf-token']").attr("content");
-      $.ajax({
-        url: "{{ route('add-to-cart') }}",
-        type: "POST",
-        data: {
-          variant_id: id,
-          _token: token,
-          quantity: quantity
-        }
-      }).done(function (data) {
-        console.log(data);
-      });
-    });
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -22425,7 +22408,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
-  props: {}
+  props: ["img_src", "title", "text", "href_link"]
 });
 
 /***/ }),
@@ -22550,10 +22533,10 @@ var _hoisted_1 = {
 var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
     "class": "navbar-nav"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "navbar-brand",
     href: "/"
-  }, "Lifegrips")])], -1
+  }, "Lifegrips")])])], -1
   /* HOISTED */
   );
 });
@@ -22578,8 +22561,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  "class": "card",
+  style: {
+    "width": "18rem"
+  }
+};
+var _hoisted_2 = ["src"];
+var _hoisted_3 = {
+  "class": "card-body"
+};
+var _hoisted_4 = {
+  "class": "card-title"
+};
+var _hoisted_5 = {
+  "class": "card-text"
+};
+var _hoisted_6 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: $props.img_src,
+    "class": "card-img-top",
+    alt: "..."
+  }, null, 8
+  /* PROPS */
+  , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.text), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: $props.href_link,
+    "class": "btn btn-primary"
+  }, "Dodaj do koszyka", 8
+  /* PROPS */
+  , _hoisted_6)])]);
 }
 
 /***/ }),
@@ -27933,7 +27948,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.navbar-nav[data-v-b9efe158] {\n    width: 100%;\n    display: flex;\n    flex-direction: row;\n    justify-content:center;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.navbar-nav[data-v-b9efe158] {\n    width: 100%;\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
