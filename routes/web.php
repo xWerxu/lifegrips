@@ -25,6 +25,6 @@ require __DIR__.'/shop.php';
 
 require __DIR__.'/admin/admin.php';
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MakeOrderRequest;
+use App\Mail\OrderCancelled;
+use App\Mail\OrderConfirmed;
+use App\Mail\OrderSent;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Coupon;
@@ -14,6 +17,7 @@ use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\MessageBag;
 
 class OrderController extends Controller
@@ -122,6 +126,8 @@ class OrderController extends Controller
             $shipment_price = $order->shipment->price;
         }
 
+        Mail::to($order->mail)->send(new OrderSent($order));
+
         return view('shop.order.thank_you', [
             'order' => $order,
             'shipment_price' => $shipment_price
@@ -222,6 +228,8 @@ class OrderController extends Controller
                 $orderLog = OrderLog::where('order_id', $id)->where('employee_id', Auth::user()->id)->where('status', 0)->latest()->first();
                 $orderLog->delete();
 
+                Mail::to($order->mail)->send(new OrderCancelled($order));
+
                 return redirect()->route('admin.order.edit', ['id' => $id])->with('success', 'Anulowano zamówienie.');
             }
 
@@ -254,6 +262,8 @@ class OrderController extends Controller
 
             $orderLog = OrderLog::where('order_id', $id)->where('employee_id', Auth::user()->id)->where('status', 0)->latest()->first();
             $orderLog->delete();
+
+            Mail::to($order->mail)->send(new OrderConfirmed($order));
 
             return redirect()->route('admin.order.edit', ['id' => $id])->with('success', 'Zatwierdzono zamówienie.');
         }
