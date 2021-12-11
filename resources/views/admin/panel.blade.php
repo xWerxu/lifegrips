@@ -2,9 +2,12 @@
 
 @section('content')
     jestes adminem jak cos
-    {{-- @foreach ($test as $t)
-        @foreach ($t->variants as $variant)
-            {{ dd($variant->pivot->value) }}
-        @endforeach
+    
+    {{-- @foreach ($products as $product)
+        <pre>
+            @php
+                print_r($product->name)
+            @endphp
+        </pre>
     @endforeach --}}
 @endsection

@@ -28,3 +28,6 @@ Route::post('/koszyk/zamowienie', [OrderController::class, 'postOrder'])
 
 Route::get('/sklep/produkt/{id}', [ShopController::class, 'product'])
                 ->name('shop.product');
+
+Route::get('/wpis/{id}', [ShopController::class, 'showArticle'])
+                ->name('shop.article');

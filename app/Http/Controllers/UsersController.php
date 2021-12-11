@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,9 +13,11 @@ class UsersController extends Controller
 {
     public function index(){
         $user = Auth::user();
+        $orders = $user->orders;
         
         return view('user.profile', [
-            'user' => $user
+            'user' => $user,
+            'orders' => $orders
         ]);
     }
 

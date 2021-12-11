@@ -57,6 +57,34 @@
             </div>
         </div>
         <div class="col">
+            <table class="table">
+                <thead>
+                    <th scope="col">Nr zamówienia</td>
+                    <th scope="col">Data</td>
+                    <th scope="col">Status</td>
+                    <th scope="col">Szczegóły</td>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                        <tr>
+                            <td scope="row">{{ $order->id }}</td>
+                            <td>{{ $order->created_at }}</td>
+                            <td>
+                                @if ($order->status == 0)
+                                    <span class="badge rounded-pill bg-secondary"><i class="bi bi-hourglass me-2"></i>Oczekuje</span>
+                                @elseif ($order->status == 1)
+                                    <span class="badge rounded-pill bg-success"><i class="bi bi-check-lg me-2"></i>Zatwierdzone</span>
+                                @else
+                                    <span class="badge rounded-pill bg-danger"><i class="bi bi-x-lg me-2"></i>Anulowane</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('profile.show-order', ['id' => $order->id]) }}" class="btn btn-primary"><i class="me-2 bi bi-search"></i>Sprawdź</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

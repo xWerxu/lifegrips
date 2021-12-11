@@ -20,6 +20,7 @@ class CartController extends Controller
         $variant = Variant::findOrFail($request->variant_id);
 
         if(Auth::check()){
+            $logged = true;
             $user = Auth::user();
             $cart = $user->cart;
             if($cart == null){
@@ -47,11 +48,20 @@ class CartController extends Controller
             }
 
             $cart->refresh();
+            $cart->load('items');
+            $items_count = count($cart->items);
 
-            return json_encode($cart);
+            $array = [
+                'cart' => $cart,
+                'logged' => $logged,
+                'items_count' => $items_count
+            ];
+
+            return json_encode($array);
             
 
         }else{
+            $logged = false;
             $cart = $request->session()->get('cart');
         
             if(isset($cart[$request->variant_id])){
@@ -71,8 +81,16 @@ class CartController extends Controller
             }
 
             $request->session()->put('cart', $cart);
+            $items_count = count($request->session()->get('cart'));
 
-            return json_encode($cart);
+
+            $array = [
+                'cart' => $cart,
+                'logged' => $logged,
+                'items_count' => $items_count
+            ];
+
+            return json_encode($array);
         }
     }
 
@@ -85,18 +103,29 @@ class CartController extends Controller
      */
     public function removeItem(Request $request){
         if (Auth::check()){
+            $logged = true;
             $item = CartItem::find($request->item_id);
             $item->forceDelete();
             $cart = Auth::user()->cart;
+            $cart->load('items');
+            $items_count = count($cart->items);
         }else{
+            $logged = false;
             $cart = $request->session()->get('cart');
             if (array_key_exists($request->item_id, $cart)){
                 unset($cart[$request->item_id]);
             }
             $request->session()->put('cart', $cart);
+            $items_count = count($request->session()->get('cart'));
         }
 
-        return json_encode($cart);
+        $array = [
+            'cart' => $cart,
+            'logged' => $logged,
+            'items_count' => $items_count
+        ];
+
+        return json_encode($array);
     }
 
     public function updateCart(Request $request){

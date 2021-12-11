@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,23 @@ class ShopController extends Controller
         ]);
     }
 
+    public function showOrder($id){
+        $order = Order::findOrFail($id);
+
+        return view('user.order', [
+            'order' => $order
+        ]);
+    }
+
+    public function showArticle($id){
+        $article = Article::findOrFail($id);
+        $article->load('products');
+
+        return view('shop.article', [
+            'article' => $article
+        ]);
+    }
+
     public function product($id){
         $product = Product::find($id);
         $product->load('mainVariant');
@@ -28,7 +46,18 @@ class ShopController extends Controller
         $product->load('categories');
 
         return view('shop.product', [
-            'product' => json_encode($product)
+            'product' => $product
         ]);
+    }
+
+    public function category(Request $request, $id){
+        $category = Category::find($id);
+        $filters = $category->filters;
+
+        // if (isset($request->pivot)){
+        //     foreach ($request->pivot as $key => $value){
+        //         $products = 
+        //     }
+        // }
     }
 }

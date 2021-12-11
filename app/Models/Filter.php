@@ -25,4 +25,9 @@ class Filter extends Model
         return $this->belongsToMany(Variant::class, 'filter_variant', 'filter_id', 'variant_id')
         ->withPivot('value');
     }
+
+    public function filteredVariants($values){
+        return $this->belongsToMany(Variant::class, 'filter_variant', 'filter_id', 'variant_id')
+        ->withPivot('value')->wherePivotIn('value', $values)->get();
+    }
 }

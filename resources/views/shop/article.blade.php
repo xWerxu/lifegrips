@@ -3,7 +3,7 @@
 @section('content')
 <pre>
     @php
-        print_r($product);
+        print_r($article);
     @endphp
 </pre>
 @endsection
