@@ -9,19 +9,37 @@ use App\Models\FilterVariant;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Variant;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index(){
-        $products = Product::where('available', 1)->get();
+    public function index(Request $request){
+        $page = $request->has('page') ? $request->get('page') : 1;
+        $limit = $request->has('limit') ? $request->get('limit') : 10;
+        $q = $request->has('q') ? $request->get('q') : '';
+        $limits = [9, 15, 30];
+
+        $variants = Variant::where('available', 1)->where('name', 'like', '%'.$q.'%')->pluck('id')->toArray();
+        $max = Product::where('available', 1)->whereIn('main_variant', $variants)->count();
+        $products = Product::where('available', 1)->whereIn('main_variant', $variants)->skip(($page - 1) * $limit)->take($limit)->get();
+        $pages = ceil($max/$limit);
+
+        $products->load('mainVariant');
         $categories = Category::whereNull('parent_id')->get();
         $categories->load('categories');
 
 
         return view('shop.products', [
             'products' => $products,
-            'categories' => $categories
+            'categories' => $categories,
+            'max' => $max,
+            'pages' => $pages,
+            'current_page' => $page,
+            'current_limit' => $limit,
+            'limits' => $limits,
+            'test' => $variants,
+            'q' => $q
         ]);
     }
 
@@ -57,18 +75,52 @@ class ShopController extends Controller
     public function category(Request $request, $id){
         $category = Category::findOrFail($id);
         $filters = $category->filters;
-        $products = $category->products;
+        $display_variants = false;
 
-        // if(isset($request->filters)){
-        //     $products = [];
-        //     foreach($request->filters as $id => $filter){
-        //         $filterVariant = FilterVariant::where('filter_id', $id)->whereIn('value', $filter['values'])->get();
-        //         $filterVariant->load('variant');
-        //         foreach($filterVariant as $fw){
-        //             array_push($products, $fw->variant);
-        //         }
-        //     }
-        // }
+        if(isset($request->filters)){
+            $display_variants = true;
+
+            $page = false;
+            $limit = false;
+            $max = false;
+            $pages = false;
+            $limits = false;
+
+            $tmp = [];
+            $i = 0;
+            foreach($request->filters as $id => $filter){
+                $filterVariant = FilterVariant::where('filter_id', $id)->whereIn('value', $filter['values'])->get();
+                $filterVariant->load('variant');
+                foreach($filterVariant as $fw){
+                    if (!isset($tmp[$fw->variant_id])){
+                        $tmp[$fw->variant_id] = 1;
+                    }else{
+                        $tmp[$fw->variant_id] += 1;
+                    }
+                }
+                $i++;
+            }
+
+            $ids = [];
+            foreach ($tmp as $id => $count){
+                if ($count == $i){
+                    array_push($ids, $id);
+                }
+            }
+            $products = Variant::whereIn('id', $ids)->get();
+
+            
+        }
+        else{
+            $page = $request->has('page') ? $request->get('page') : 1;
+            $limit = $request->has('limit') ? $request->get('limit') : 10;
+
+            $max = $category->products->count();
+            $pages = ceil($max/$limit);
+            $limits = [9, 15, 30];
+
+            $products = $category->products->skip(($page - 1) * $limit)->take($limit);
+        }
 
         $array = [];
         $filters->load('filterVariant');
@@ -90,6 +142,12 @@ class ShopController extends Controller
             'category' => $category,
             'filters' => $array,
             'products' => $products,
+            'display_variants' => $display_variants,
+            'max' => $max,
+            'pages' => $pages,
+            'current_page' => $page,
+            'current_limit' => $limit,
+            'limits' => $limits,
         ]);
     }
 }
