@@ -9,18 +9,17 @@
 
 
         @foreach($filters as $id_filtru => $filtr)
-
         {{-- <checkbox-list name="{{ filtry[$id_filtru][$value] }}"></checkbox-list> --}}
-                @foreach($filtr as $value)
+            @if (isset($filtr['values']))
+            <h6 class="display-6">{{ $filtr['name'] }}</h6>
+                @foreach($filtr['values'] as $value)
                 
                 <li class='list-group-item'>
                 <checkbox-list name="{{ $value }}" value="{{ $value }}"></checkbox-list>
                 </li>
 
                 @endforeach
-
-        
-
+            @endif
         @endforeach
             </div>
         </div>
