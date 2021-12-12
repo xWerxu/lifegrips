@@ -22569,9 +22569,6 @@ var _hoisted_1 = {
 };
 var _hoisted_2 = ["id"];
 var _hoisted_3 = ["for"];
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container\"><ul><li><input type=\"checkbox\" id=\"option\"><label for=\"option\"> Electronics</label><ul><li><label><input type=\"checkbox\" class=\"subOption\"> Laptops</label></li><li><label><input type=\"checkbox\" class=\"subOption\"> TVs</label></li><li><label><input type=\"checkbox\" class=\"subOption\"> Microphones</label></li></ul></li></ul></div>", 1);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "form-check-input",
@@ -22585,8 +22582,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "for": $props.data
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.data), 9
   /* TEXT, PROPS */
-  , _hoisted_3)]), _hoisted_4], 64
-  /* STABLE_FRAGMENT */
+  , _hoisted_3)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" \n    <div class=\"container\">\n        <ul>\n            <li>\n                <input type=\"checkbox\" id=\"option\" /><label for=\"option\">\n                    Electronics</label\n                >\n                <ul>\n                    <li>\n                        <label\n                            ><input type=\"checkbox\" class=\"subOption\" />\n                            Laptops</label\n                        >\n                    </li>\n                    <li>\n                        <label\n                            ><input type=\"checkbox\" class=\"subOption\" />\n                            TVs</label\n                        >\n                    </li>\n                    <li>\n                        <label\n                            ><input type=\"checkbox\" class=\"subOption\" />\n                            Microphones</label\n                        >\n                    </li>\n                </ul>\n            </li>\n        </ul>\n    </div> ")], 2112
+  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
 

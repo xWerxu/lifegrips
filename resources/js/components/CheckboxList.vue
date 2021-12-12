@@ -3,7 +3,7 @@
         <input class="form-check-input" type="checkbox" value="" :id="data" />
         <label class="form-check-label" :for="data"> {{ data }} </label>
     </div>
-
+    <!-- 
     <div class="container">
         <ul>
             <li>
@@ -32,7 +32,7 @@
                 </ul>
             </li>
         </ul>
-    </div>
+    </div> -->
 </template>
 
 <script>
