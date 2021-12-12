@@ -1,7 +1,12 @@
 <template>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" :id="data" />
-        <label class="form-check-label" :for="data"> {{ data }} </label>
+        <input
+            class="form-check-input"
+            type="checkbox"
+            :value="value"
+            :id="name"
+        />
+        <label class="form-check-label" :for="name"> {{ name }} </label>
     </div>
     <!-- 
     <div class="container">
@@ -37,9 +42,7 @@
 
 <script>
 export default {
-    props: {
-        data: {},
-    },
+    props: ["name", "value"],
     mounted() {
         const checkboxes = document.querySelectorAll("input.subOption"),
             checkall = document.getElementById("option");

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <pre>
     @php
         // print_r($product);
@@ -14,7 +17,7 @@
         // print_r($product->mainVariant->main_image);
         // print_r($product->mainVariant->price);
 
-        print_r($product->variants);
+        print_r($variant->image);
 
 
     @endphp

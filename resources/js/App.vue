@@ -5,6 +5,7 @@ import MainBanner from "./components/main_page/MainBanner.vue";
 import SubNav from "./components/SubNav.vue";
 import FrontpageLabel from "./components/main_page/FrontpageLabel.vue";
 import CheckboxList from "./components/CheckboxList.vue";
+import ProductImg from "./components/product/ProductImg.vue";
 
 export default {
     data() {
@@ -18,6 +19,7 @@ export default {
         MainBanner,
         FrontpageLabel,
         CheckboxList,
+        ProductImg,
     },
 
     mounted() {},
