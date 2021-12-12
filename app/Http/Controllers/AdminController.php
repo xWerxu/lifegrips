@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Filter;
+use App\Models\FilterVariant;
 use App\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
@@ -25,7 +28,7 @@ class AdminController extends Controller
             'last_orders' => $last_orders,
             'this_month' => $this_month,
             'last_customers' => $last_customers,
-            'all_orders' => $all_orders
+            'all_orders' => $all_orders,
         ]);
     }
 }

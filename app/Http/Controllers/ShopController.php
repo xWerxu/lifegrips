@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Filter;
+use App\Models\FilterVariant;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Variant;
@@ -41,7 +43,7 @@ class ShopController extends Controller
     }
 
     public function product($id){
-        $variant = Variant::find($id);
+        $variant = Variant::findOrFail($id);
         $product = $variant->product;
         $product->load('variants');
         $product->load('categories');
@@ -53,13 +55,41 @@ class ShopController extends Controller
     }
 
     public function category(Request $request, $id){
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         $filters = $category->filters;
+        $products = $category->products;
 
-        // if (isset($request->pivot)){
-        //     foreach ($request->pivot as $key => $value){
-        //         $products = 
+        // if(isset($request->filters)){
+        //     $products = [];
+        //     foreach($request->filters as $id => $filter){
+        //         $filterVariant = FilterVariant::where('filter_id', $id)->whereIn('value', $filter['values'])->get();
+        //         $filterVariant->load('variant');
+        //         foreach($filterVariant as $fw){
+        //             array_push($products, $fw->variant);
+        //         }
         //     }
         // }
+
+        $array = [];
+        $filters->load('filterVariant');
+        foreach ($category->filters as $filter){
+            $array[$filter->id]['name'] = $filter->name;
+            foreach ($filter->filterVariant as $filterVariant){
+                if (!isset($array[$filter->id]['values'])){
+                    $array[$filter->id]['values'][0] = $filterVariant->value;
+                }else{
+                    if (!in_array($filterVariant->value, $array[$filter->id]['values'])){
+                    array_push($array[$filter->id]['values'], $filterVariant->value);
+                    }
+                }
+                
+            }
+        }
+
+        return view ('shop.category', [
+            'category' => $category,
+            'filters' => $array,
+            'products' => $products,
+        ]);
     }
 }

@@ -31,3 +31,6 @@ Route::get('/sklep/produkt/{id}', [ShopController::class, 'product'])
 
 Route::get('/wpis/{id}', [ShopController::class, 'showArticle'])
                 ->name('shop.article');
+
+Route::get('/sklep/kategoria/{id}', [ShopController::class, 'category' ])
+                ->name('shop.category');

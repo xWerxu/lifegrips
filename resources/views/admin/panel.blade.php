@@ -4,6 +4,24 @@
     <h1 class="display-1">Witaj w Lifegrips, {{ Auth::user()->first_name ? Auth::user()->first_name : Auth::user()->email}}</h1>
     <h3 class="display-6">Oto aktualne podsumowanie:</h3>
 
+    <pre>
+        @php
+            print_r($array);
+        @endphp
+        {{-- @foreach ($many as $m)
+            @foreach ($m->filterVariant as $f)
+                @php
+                    print_r($f->value);
+                @endphp
+            @endforeach
+        @endforeach
+        @foreach ($test as $manytomany)
+            @php
+                print_r($manytomany->variant->name);
+            @endphp
+        @endforeach --}}
+    </pre>
+
     <div class="row mt-5">
         <div class="col-6">
             <div class="card text-center">

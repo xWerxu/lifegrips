@@ -217,6 +217,7 @@ class VariantController extends Controller
         }
 
         if (isset($request->filters)){
+            $variant->filters()->detach();
             foreach ($request->filters as $id => $value){
                 if ($value == ""){
                     $variant->filters()->detach($id);
