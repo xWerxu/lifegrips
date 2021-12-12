@@ -6,33 +6,24 @@
         <div class="row">
             <div class="col-3">
                 <h3>Filtr Kategorii:</h3>
-                <div class="list-group">
 
             
             @foreach($categories as $category)
-                {{-- //     echo "<pre>";
-                //     print_r($category->name);
-                //     echo "</pre>"; --}}
+                    
+                    {{$category->name}}:
+                <div class="list-group">
+                    
                 @foreach($category->categories as $value)
         
 
-                    <li class='list-group-item'>
-                    <checkbox-list name="{{ $value->name }}" value="{{ $value->name }}"></checkbox-list>
+                    <li class='list-group-item '>
+                    <a class="stretched-link" href="/sklep/kategoria/{{ $value->category_id }}"> {{$value->name}} </a>
                     </li>
 
                 @endforeach
-
-  
+                </div><br>
 
             @endforeach
-           
-{{-- 
-            @foreach($categories->$category->categories->name as $value)
-
-            <checkbox-list data="{{ json_encode($value) }}"></checkbox-list>
-
-            @endforeach --}}
-                </div>
             </div>
             <div class="col-9">
                 <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
