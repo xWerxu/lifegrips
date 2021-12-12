@@ -138,9 +138,9 @@
 <script>
 
       $(".add-item").click(function () {
-      var id = $(this).data("id");
-      var quantity = $(this).data("quantity");
-      var token = $("meta[name='csrf-token']").attr("content");
+      const id = $(this).data("id");
+      const quantity = $(this).data("quantity");
+      const token = $("meta[name='csrf-token']").attr("content");
 
       $.ajax({
           url: "{{ route('add-to-cart') }}",

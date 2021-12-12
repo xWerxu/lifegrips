@@ -8,7 +8,7 @@ use App\Http\Controllers\ShopController;
 Route::get('/sklep', [ShopController::class, 'index'])
                 ->name('shop');
 
-Route::post('sklep/add-to-cart', [CartController::class, 'addToCart'])
+Route::post('/sklep/add-to-cart', [CartController::class, 'addToCart'])
                 ->name('add-to-cart');
 
 Route::get('/koszyk', [CartController::class, 'index'])
