@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="contianer">
+        <jq-injection></jq-injection>
         @if ($cart == null)
             Koszyk pusty : C
         @else
@@ -74,22 +75,5 @@
     </div>
     @endif
 
-    <script>
-        $(".remove-item").click(function(){
-            var id = $(this).data("id");
-            var token = $("meta[name='csrf-token']").attr("content");
-
-            $.ajax({
-                url: "{{ route('remove-from-cart') }}",
-                type: 'DELETE',
-                data: {
-                    "item_id": id,
-                    "_token": token,
-                }
-            }).done(function(data){
-                console.log(data);
-            });
-        });
-    </script>
 @endsection
 

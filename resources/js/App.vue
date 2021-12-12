@@ -7,6 +7,7 @@ import FrontpageLabel from "./components/main_page/FrontpageLabel.vue";
 import CheckboxList from "./components/CheckboxList.vue";
 import ProductImg from "./components/product/ProductImg.vue";
 import ProductInfo from "./components/product/ProductInfo.vue";
+import JqInjection from "./components/JqInjection.vue";
 
 export default {
     data() {
@@ -22,6 +23,7 @@ export default {
         CheckboxList,
         ProductImg,
         ProductInfo,
+        JqInjection,
     },
 
     mounted() {},

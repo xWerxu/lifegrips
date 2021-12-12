@@ -7,12 +7,23 @@
         <h6>Ilość na stanie: {{ value.on_stock }}</h6>
         <br />
         <br />
+        <div class="d-flex justify-content-end">
+            <div class="input-group input-number mb-3 col-4 w-50">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Sztuki"
+                    value="0"
+                />
+                <span class="input-group-text" id="basic-addon1">szt</span>
+            </div>
+        </div>
         <button
             class="button-import add-item"
             role="button"
             :data-id="value.id"
             :data-variant_id="value.id"
-            data-quantity="3"
+            :data-quantity="quantity"
         >
             Dodaj do koszyka
         </button>
@@ -21,10 +32,30 @@
 
 <script>
 export default {
+    data() {
+        const quantity = 1;
+        return {
+            quantity,
+        };
+    },
+    components: {},
     props: ["data"],
     computed: {
         value() {
             return JSON.parse(this.data);
+        },
+    },
+    methods: {
+        increment() {
+            return this.quantity++;
+        },
+        decrement() {
+            return this.quantity--;
+        },
+        watch_value() {
+            if (this.quantity >= 0 || isNaN(this.quantity)) {
+                this.quantity = 1;
+            }
         },
     },
     mounted() {
@@ -50,7 +81,11 @@ export default {
 </script>
 
 <style>
-/* CSS */
+.input-number {
+    justify-content: right;
+    /* margin-right: 100px; */
+}
+
 .button-import {
     background: #5e5df0;
     border-radius: 999px;
