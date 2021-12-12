@@ -127,12 +127,4 @@
             </div>
         </div>
     </div>
-    {{-- {{ $best_selling }} --}}
-    {{-- @foreach ($products as $product)
-        <pre>
-            @php
-                print_r($product->name)
-            @endphp
-        </pre>
-    @endforeach --}}
 @endsection
