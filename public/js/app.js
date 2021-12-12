@@ -22592,14 +22592,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-check-input",
     type: "checkbox",
     value: $props.value,
-    id: $props.name,
+    id: $props.value,
     name: $props.name
   }, null, 8
   /* PROPS */
   , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
     "class": "form-check-label",
-    "for": $props.name
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.name), 9
+    "for": $props.value
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.value), 9
   /* TEXT, PROPS */
   , _hoisted_3)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" \n    <div class=\"container\">\n        <ul>\n            <li>\n                <input type=\"checkbox\" id=\"option\" /><label for=\"option\">\n                    Electronics</label\n                >\n                <ul>\n                    <li>\n                        <label\n                            ><input type=\"checkbox\" class=\"subOption\" />\n                            Laptops</label\n                        >\n                    </li>\n                    <li>\n                        <label\n                            ><input type=\"checkbox\" class=\"subOption\" />\n                            TVs</label\n                        >\n                    </li>\n                    <li>\n                        <label\n                            ><input type=\"checkbox\" class=\"subOption\" />\n                            Microphones</label\n                        >\n                    </li>\n                </ul>\n            </li>\n        </ul>\n    </div> ")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */

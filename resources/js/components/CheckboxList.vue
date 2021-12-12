@@ -4,10 +4,10 @@
             class="form-check-input"
             type="checkbox"
             :value="value"
-            :id="name"
+            :id="value"
             :name="name"
         />
-        <label class="form-check-label" :for="name"> {{ name }} </label>
+        <label class="form-check-label" :for="value"> {{ value }} </label>
     </div>
     <!-- 
     <div class="container">
