@@ -22396,7 +22396,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["name", "value"],
+  props: ["name", "value", "id"],
   mounted: function mounted() {
     var checkboxes = document.querySelectorAll("input.subOption"),
         checkall = document.getElementById("option");
@@ -22592,13 +22592,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-check-input",
     type: "checkbox",
     value: $props.value,
-    id: $props.value,
+    id: $props.id,
     name: $props.name
   }, null, 8
   /* PROPS */
   , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
     "class": "form-check-label",
-    "for": $props.value
+    "for": $props.id
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.value), 9
   /* TEXT, PROPS */
   , _hoisted_3)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" \n    <div class=\"container\">\n        <ul>\n            <li>\n                <input type=\"checkbox\" id=\"option\" /><label for=\"option\">\n                    Electronics</label\n                >\n                <ul>\n                    <li>\n                        <label\n                            ><input type=\"checkbox\" class=\"subOption\" />\n                            Laptops</label\n                        >\n                    </li>\n                    <li>\n                        <label\n                            ><input type=\"checkbox\" class=\"subOption\" />\n                            TVs</label\n                        >\n                    </li>\n                    <li>\n                        <label\n                            ><input type=\"checkbox\" class=\"subOption\" />\n                            Microphones</label\n                        >\n                    </li>\n                </ul>\n            </li>\n        </ul>\n    </div> ")], 2112
@@ -22630,7 +22630,43 @@ var _hoisted_1 = {
   "class": "navbar navbar-dark bg-dark"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<ul class=\"navbar-nav\" data-v-b9efe158><li data-v-b9efe158><a class=\"navbar-brand\" href=\"/\" data-v-b9efe158>Lifegrips</a></li><li class=\"float-end\" data-v-b9efe158><button type=\"button\" class=\"btn btn-dark\" data-v-b9efe158><i class=\"bi bi-bag-fill\" data-v-b9efe158></i></button><button type=\"button\" class=\"btn btn-dark\" data-v-b9efe158><i class=\"bi bi-person-fill\" data-v-b9efe158></i></button></li></ul>", 1);
+var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
+    "class": "navbar-nav"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": "navbar-brand",
+    href: "/"
+  }, "Lifegrips")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+    "class": "float-end"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    action: "/sklep",
+    "class": "d-flex flex-row-reverse mb-2 float-end",
+    method: "get"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "btn btn-outline-success",
+    type: "submit"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "me-2 bi bi-search"
+  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "form-control me-2",
+    type: "search",
+    name: "q",
+    placeholder: "Nazwa produktu",
+    "aria-label": "Search"
+  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "button",
+    "class": "btn btn-dark"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "bi bi-bag-fill"
+  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "button",
+    "class": "btn btn-dark"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "bi bi-person-fill"
+  })])])], -1
+  /* HOISTED */
+  );
+});
 
 var _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {

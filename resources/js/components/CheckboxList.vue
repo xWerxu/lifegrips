@@ -4,10 +4,10 @@
             class="form-check-input"
             type="checkbox"
             :value="value"
-            :id="value"
+            :id="id"
             :name="name"
         />
-        <label class="form-check-label" :for="value"> {{ value }} </label>
+        <label class="form-check-label" :for="id"> {{ value }} </label>
     </div>
     <!-- 
     <div class="container">
@@ -43,7 +43,7 @@
 
 <script>
 export default {
-    props: ["name", "value"],
+    props: ["name", "value", "id"],
     mounted() {
         const checkboxes = document.querySelectorAll("input.subOption"),
             checkall = document.getElementById("option");
