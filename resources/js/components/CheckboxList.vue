@@ -5,6 +5,7 @@
             type="checkbox"
             :value="value"
             :id="name"
+            :name="name"
         />
         <label class="form-check-label" :for="name"> {{ name }} </label>
     </div>

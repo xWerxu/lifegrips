@@ -8,28 +8,24 @@
                 <h3>Filtr Kategorii:</h3>
                 <div class="list-group">
 
-            @php 
-            foreach($categories as $category)
-            {
-                //     echo "<pre>";
+            
+            @foreach($categories as $category)
+                {{-- //     echo "<pre>";
                 //     print_r($category->name);
-                //     echo "</pre>";
-                foreach($category->categories as $value)
-                {
+                //     echo "</pre>"; --}}
+                @foreach($category->categories as $value)
+        
 
-                    echo "<li class='list-group-item'>";
-                    echo "<checkbox-list data=".json_encode($value->name)."></checkbox-list>";
-                    echo "</li>";
+                    <li class='list-group-item'>
+                    <checkbox-list name="{{ $value->name }}" value="{{ $value->name }}"></checkbox-list>
+                    </li>
 
-                }
+                @endforeach
 
   
 
-            }
+            @endforeach
            
-
-
-            @endphp
 {{-- 
             @foreach($categories->$category->categories->name as $value)
 

@@ -22585,14 +22585,15 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "form-check"
 };
-var _hoisted_2 = ["value", "id"];
+var _hoisted_2 = ["value", "id", "name"];
 var _hoisted_3 = ["for"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "form-check-input",
     type: "checkbox",
     value: $props.value,
-    id: $props.name
+    id: $props.name,
+    name: $props.name
   }, null, 8
   /* PROPS */
   , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {

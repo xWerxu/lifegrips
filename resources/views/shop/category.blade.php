@@ -34,7 +34,6 @@
             </div>
         </div>
     </div>
-    <checkbox-list></checkbox-list>
 
     <pre>
     @php 
