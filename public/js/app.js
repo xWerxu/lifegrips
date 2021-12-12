@@ -23074,7 +23074,7 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_6 = ["data-id"];
+var _hoisted_6 = ["data-id", "data-variant_id"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.value.name), 1
   /* TEXT */
@@ -23085,7 +23085,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ), _hoisted_4, _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "button-import add-item",
     role: "button",
-    "data-id": $options.value.id
+    "data-id": $options.value.id,
+    "data-variant_id": $options.value.id,
+    "data-quantity": "3"
   }, " Dodaj do koszyka ", 8
   /* PROPS */
   , _hoisted_6)]);

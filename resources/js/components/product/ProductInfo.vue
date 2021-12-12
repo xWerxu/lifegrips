@@ -11,6 +11,8 @@
             class="button-import add-item"
             role="button"
             :data-id="value.id"
+            :data-variant_id="value.id"
+            data-quantity="3"
         >
             Dodaj do koszyka
         </button>

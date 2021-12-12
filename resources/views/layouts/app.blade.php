@@ -137,24 +137,6 @@
 
 <script>
 
-      $(".add-item").click(function () {
-      const id = $(this).data("id");
-      const quantity = $(this).data("quantity");
-      const token = $("meta[name='csrf-token']").attr("content");
-
-      $.ajax({
-          url: "{{ route('add-to-cart') }}",
-          type: "POST",
-          data: {
-              variant_id: id,
-              _token: token,
-              quantity: quantity,
-          },
-      }).done(function (data) {
-          console.log(data);
-      });
-        });
-
 </script>
 
 </html>
