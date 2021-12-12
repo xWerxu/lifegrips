@@ -60,7 +60,7 @@
                       </div>
                   </li>
                   <li>
-                      <a href="#" class="nav-link px-3 active">
+                      <a href="{{ route('admin.panel') }}" class="nav-link px-3 active">
                         <span class="me-2"><i class="bi bi-info-circle"></i></span>
                         <span>Informacje ogólne</span>
                       </a>

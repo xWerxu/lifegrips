@@ -72,7 +72,7 @@ class ProductController extends Controller
 
         }
 
-        $product->forceDelete();
+        $product->delete();
 
         return redirect()->route('admin.product.index')->with('success', 'Pomyślnie usunięto produkt i jego warianty!');
     }
