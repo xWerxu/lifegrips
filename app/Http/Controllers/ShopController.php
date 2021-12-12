@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Variant;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -40,13 +41,14 @@ class ShopController extends Controller
     }
 
     public function product($id){
-        $product = Product::find($id);
-        $product->load('mainVariant');
+        $variant = Variant::find($id);
+        $product = $variant->product;
         $product->load('variants');
         $product->load('categories');
 
         return view('shop.product', [
-            'product' => $product
+            'product' => $product,
+            'variant' => $variant,
         ]);
     }
 
