@@ -128,6 +128,7 @@ class OrderController extends Controller
 
         Mail::to($order->mail)->send(new OrderSent($order));
 
+
         return view('shop.order.thank_you', [
             'order' => $order,
             'shipment_price' => $shipment_price
@@ -144,7 +145,7 @@ class OrderController extends Controller
             $pages = ceil($max/$limit);
             $limits = [25, 50, 100];
 
-            $orders = Order::all()->skip(($page - 1) * $limit)->take($limit);
+            $orders = Order::all()->sortByDesc('created_at')->skip(($page - 1) * $limit)->take($limit);
 
             return view('admin.order.index', [
                 'orders' => $orders,
