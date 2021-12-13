@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
     public function index(){
         $user = Auth::user();
-        $orders = $user->orders;
+        $orders = $user->orders->sortByDesc('created_at');
         
         return view('user.profile', [
             'user' => $user,
