@@ -202,7 +202,7 @@ class OrderController extends Controller
             ]);
         }
 
-        public function update(UpdateOrderRequest $request, $id){
+        public function update(Request $request, $id){
             $order = Order::findOrFail($id);
             if (isset($request->action) && $request->action == "cancel"){
                 $cart = $order->cart;
@@ -211,6 +211,9 @@ class OrderController extends Controller
                 foreach ($request->item as $item_id => $quantity){
                     $cartItem = CartItem::find($item_id);
                     $variant = $cartItem->variant;
+                    if ($quantity <= 0 || $quantity > $variant->on_stock){
+                        return redirect()->route('admin.order.edit', ['id' => $id])->with('error', 'Ilość sztuk produktów nie może być mniejsza niż 1 lub większa od dostępnej ilości.');
+                    }
                     $cartItem->quantity = $quantity;
                     $cartItem->save();
                     $total_price += $variant->price * $cartItem->quantity;
@@ -241,8 +244,8 @@ class OrderController extends Controller
             foreach ($request->item as $item_id => $quantity){
                 $cartItem = CartItem::find($item_id);
                 $variant = $cartItem->variant;
-                if ($quantity > $variant->on_stock){
-                    return redirect()->route('admin.order.edit', ['id' => $id])->with('quantityError', 'Zamówiona ilość produktu ' . $variant->name . ' nie może być większa niż ilość tego produktu w magazynie!');
+                if ($quantity <= 0 || $quantity > $variant->on_stock){
+                    return redirect()->route('admin.order.edit', ['id' => $id])->with('error', 'Ilość sztuk produktów nie może być mniejsza niż 1 lub większa od dostępnej ilości.');
                 }
                 $cartItem->quantity = $quantity;
                 $cartItem->save();
@@ -268,5 +271,5 @@ class OrderController extends Controller
             Mail::to($order->mail)->send(new OrderConfirmed($order));
 
             return redirect()->route('admin.order.edit', ['id' => $id])->with('success', 'Zatwierdzono zamówienie.');
-        }
+            }
 }
