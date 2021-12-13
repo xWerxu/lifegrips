@@ -31,10 +31,10 @@
     <div class="card p-5">
         <div class="row">
             <div class="col-6 justify-content-center">
-                <product-img side_images="{{json_encode($variant->images)}}" main_image="{{$product->mainVariant->main_image}}"></product-img>
+                <product-img side_images="{{json_encode($variant->images)}}" main_image="{{$variant->main_image}}"></product-img>
             </div>
             <div class="col-6 justify-content-center">
-                <product-info data="{{json_encode($product->mainVariant)}}"></product-info>
+                <product-info data="{{json_encode($variant)}}"></product-info>
 
             </div>
         </div>
