@@ -7,7 +7,7 @@ export default {
             var token = $("meta[name='csrf-token']").attr("content");
 
             $.ajax({
-                url: "{{ route('remove-from-cart') }}",
+                url: "/koszyk/remove-item",
                 type: "DELETE",
                 data: {
                     item_id: id,
