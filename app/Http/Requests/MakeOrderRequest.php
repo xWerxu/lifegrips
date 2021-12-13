@@ -25,7 +25,7 @@ class MakeOrderRequest extends FormRequest
     {
         return [
             'first_name' => 'required|max:255',
-            'second_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
             'email' => 'required|email',
             'phone_number' => 'required|max:16',
             'city' => 'required|max:255',

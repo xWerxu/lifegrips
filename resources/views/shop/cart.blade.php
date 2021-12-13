@@ -44,7 +44,7 @@
                             <input type="number" class="form-control" name="quantity[{{ $item->id }}]" value="{{ $item->quantity }}">
                         </td>
                         <td>
-                            <button type="button" class="btn btn-danger remove-item" data-id="{{ $item->id }}" name="usun">Usuń</button>
+                            <button type="button" class="btn btn-danger remove-item" data-item_id="{{ $item->id }}" name="usun">Usuń</button>
                         </td>
                     </tr>
                 @endforeach

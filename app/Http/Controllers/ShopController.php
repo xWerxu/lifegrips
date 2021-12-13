@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Variant;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -45,6 +46,10 @@ class ShopController extends Controller
 
     public function showOrder($id){
         $order = Order::findOrFail($id);
+
+        if($order->cart->client_id != Auth::user()->id){
+            return redirect()->route('user.profile');
+        }
 
         return view('user.order', [
             'order' => $order
