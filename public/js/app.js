@@ -22485,7 +22485,7 @@ __webpack_require__.r(__webpack_exports__);
       var id = $(this).data("id");
       var token = $("meta[name='csrf-token']").attr("content");
       $.ajax({
-        url: "{{ route('remove-from-cart') }}",
+        url: "/koszyk/remove-item",
         type: "DELETE",
         data: {
           item_id: id,
