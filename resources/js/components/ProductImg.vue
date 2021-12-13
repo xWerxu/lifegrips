@@ -2,11 +2,15 @@
     <div class="row">
         <div class="col-3">
             <div v-for="image in images_parsed" :key="image.image_id">
-                <img class="side_image mr-2 mt-2" :src="image.path" />
+                <img
+                    class="side_image mr-2 mt-2"
+                    :id="image.image_id"
+                    :src="image.path"
+                />
             </div>
         </div>
         <div class="col-9">
-            <img :src="main_image" />
+            <img class="main_img" :src="main_image" />
         </div>
     </div>
 </template>
@@ -32,8 +36,13 @@ export default {
 .side_image {
     width: 80px;
     height: 80px;
+    border: 1px solid #000000;
 }
 
+.main_img {
+    padding: 10px;
+    border: 3px solid #000000;
+}
 /* 
  {
             image_id: Number,

@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card product-card">
         <img :src="img_src" class="card-img-top" alt="..." />
         <div class="card-body">
             <h5 class="card-title">{{ title }}</h5>
@@ -24,8 +24,46 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.card {
+<style lang="scss">
+.link {
+    /* RESET */
+    text-decoration: none;
+    line-height: 1;
+
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+    padding: 5px 5px;
+    overflow: hidden;
+    color: #333;
+    vertical-align: bottom;
+    transition: color 0.3s ease-out;
+}
+
+link {
+    color: rgb(0, 0, 0);
+    letter-spacing: 0.05em;
+    display: inline-block;
+    padding: 2px 20px;
+    position: relative;
+}
+link:after {
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+link:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+.product-card {
     height: 430px;
     width: 270px;
 }

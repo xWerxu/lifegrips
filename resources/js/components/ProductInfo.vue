@@ -10,12 +10,13 @@
         <div class="d-flex justify-content-end">
             <div class="input-group input-number mb-3 col-4 w-50">
                 <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     placeholder="Sztuki"
-                    value="0"
+                    v-model="quantity"
+                    @input="watch_value"
                 />
-                <span class="input-group-text" id="basic-addon1">szt</span>
+                <span class="input-group-text" id="sztuki">szt</span>
             </div>
         </div>
         <button
@@ -46,15 +47,10 @@ export default {
         },
     },
     methods: {
-        increment() {
-            return this.quantity++;
-        },
-        decrement() {
-            return this.quantity--;
-        },
         watch_value() {
-            if (this.quantity >= 0 || isNaN(this.quantity)) {
+            if (this.quantity <= 0 || isNaN(this.quantity)) {
                 this.quantity = 1;
+                console.log(this.quantity);
             }
         },
     },

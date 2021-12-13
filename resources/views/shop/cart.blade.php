@@ -2,11 +2,10 @@
 
 @section('content')
     <div class="contianer">
-        <jq-injection></jq-injection>
         @if ($cart == null)
             Koszyk pusty : C
         @else
-        <form class="form" method="POST" accept="{{ route('update-cart') }}">
+        <form class="form " method="POST" accept="{{ route('update-cart') }}">
             @csrf
             @method('POST')
             <table class="table">
@@ -20,7 +19,7 @@
             @guest
                 @foreach ($cart as $key=>$item)
                     <tr>
-                        <td scope="col" style="width: 100px"><img style="height: 100px; width: 100px;" src="{{ $item['image'] }}"</td>
+                        <td scope="col" style="width: 100px"><img style="height: 100px; width: 100px;" src="{{ $item['image'] }}"></td>
                         <td>{{ $item['name'] }}</td>
                         <td>{{ $item['price'] }}</td>
                         <td>
@@ -38,7 +37,7 @@
                     $variant = $item->variant;
                 @endphp
                     <tr>
-                        <td scope="col" style="width: 100px"><img style="height: 100px; width: 100px;" src="{{ $variant->main_image }}"</td>
+                        <td scope="col" style="width: 100px"><img style="height: 100px; width: 100px;" src="{{ $variant->main_image }}"></td>
                         <td>{{ $variant->name }}</td>
                         <td>{{ $variant->price }}</td>
                         <td>

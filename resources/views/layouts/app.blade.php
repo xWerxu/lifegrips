@@ -114,7 +114,7 @@
             </div>
         </nav> -->
     <main-navbar></main-navbar>
-    <sub-nav href_muzyka="#" href_akcesoria="#" href_odziez="#" ></sub-nav>
+    <sub-nav data="" ></sub-nav>
 
         <main>
             @yield('content')

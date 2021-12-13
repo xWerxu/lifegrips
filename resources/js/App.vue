@@ -1,12 +1,12 @@
 <script>
 import ProductCard from "./components/ProductCard.vue";
 import MainNavbar from "./components/MainNavbar.vue";
-import MainBanner from "./components/main_page/MainBanner.vue";
+import MainBanner from "./components/MainBanner.vue";
 import SubNav from "./components/SubNav.vue";
-import FrontpageLabel from "./components/main_page/FrontpageLabel.vue";
+import FrontpageLabel from "./components/FrontpageLabel.vue";
 import CheckboxList from "./components/CheckboxList.vue";
-import ProductImg from "./components/product/ProductImg.vue";
-import ProductInfo from "./components/product/ProductInfo.vue";
+import ProductImg from "./components/ProductImg.vue";
+import ProductInfo from "./components/ProductInfo.vue";
 import JqInjection from "./components/JqInjection.vue";
 
 export default {

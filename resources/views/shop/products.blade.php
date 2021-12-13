@@ -17,7 +17,7 @@
         
 
                     <li class='list-group-item '>
-                    <a class="stretched-link" href="/sklep/kategoria/{{ $value->category_id }}"> {{$value->name}} </a>
+                    <a class="stretched-link link" href="/sklep/kategoria/{{ $value->category_id }}"> {{$value->name}} </a>
                     </li>
 
                 @endforeach
@@ -30,7 +30,7 @@
                 <ul class="pagination float-start">
                     @if ($current_page > 1)
                     <li class="page-item" href="#" aria-label="Poprzednia">
-                        <a href="{{ url()->current() }}?page={{ $current_page - 1 }}&limit={{ $current_limit }}&q={{ $q }}" class="page-link">Poprzednia</a>
+                        <a href="{{ url()->current() }}?page={{ $current_page - 1 }}&limit={{ $current_limit }}&q={{ $q }}" class="page-link link">Poprzednia</a>
                     </li>
                     @endif
                     @for ($i=1; $i<=$pages; $i++)
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <checkbox-list></checkbox-list>
+        {{-- <checkbox-list></checkbox-list> --}}
 
     </div>
 

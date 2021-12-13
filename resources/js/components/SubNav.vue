@@ -18,19 +18,9 @@
             >
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a
-                            class="nav-link active"
-                            aria-current="page"
-                            :href="href_muzyka"
-                        >
+                        <a class="nav-link active" aria-current="page" href="">
                             Muzyka
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" :href="href_akcesoria">Akcesoria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" :href="href_odziez">Odzież</a>
                     </li>
                 </ul>
             </div>
@@ -43,14 +33,14 @@ export default {
     data() {
         return {};
     },
-    props: ["href_muzyka", "href_akcesoria", "href_odziez"],
+    props: ["data"],
 };
 </script>
 
 <style scoped>
 li {
     display: flex;
-    flex-wrap: row
+    flex-wrap: row;
 }
 
 a {

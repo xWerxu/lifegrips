@@ -26,9 +26,11 @@
                         <i class="bi bi-bag-fill"></i>
                     </button>
                 </a>
-                <button type="button" class="btn btn-dark">
-                    <i class="bi bi-person-fill"></i>
-                </button>
+                <a href="/profil">
+                    <button type="button" class="btn btn-dark">
+                        <i class="bi bi-person-fill"></i>
+                    </button>
+                </a>
             </li>
         </ul>
     </nav>

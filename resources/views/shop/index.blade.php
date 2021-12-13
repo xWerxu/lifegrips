@@ -20,7 +20,7 @@
 
 
     <div v-for="article in {{ $articles }}" :key="article.id">
-    <frontpage-label :data ="article"></frontpage-label>";
+    <frontpage-label :data ="article"></frontpage-label>
     </div>
     
     
