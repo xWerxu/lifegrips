@@ -28,15 +28,29 @@
 
 
 <div class="container px-4  mt-5">
-    <div class="row ">
-        <div class="col-6 justify-content-center">
-            <product-img side_images="{{json_encode($variant->images)}}" main_image="{{$product->mainVariant->main_image}}"></product-img>
-        </div>
-        <div class="col-6 justify-content-center">
-            <product-info data="{{json_encode($product->mainVariant)}}"></product-info>
+    <div class="card p-5">
+        <div class="row">
+            <div class="col-6 justify-content-center">
+                <product-img side_images="{{json_encode($variant->images)}}" main_image="{{$product->mainVariant->main_image}}"></product-img>
+            </div>
+            <div class="col-6 justify-content-center">
+                <product-info data="{{json_encode($product->mainVariant)}}"></product-info>
 
+            </div>
         </div>
-
+        <div class="mt-5">
+            {{ $product->description }}
+        </div>
+    </div>
+    <h2 class="display-4 mt-5">Wszystkie warianty tego produktu</h2>
+    <div class="col-12">
+        <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
+            @foreach($product->variants as $product)
+                <div class="col">
+                    <product-card product_id="{{ $product->id }}" img_src="{{ $product->main_image }}" title="{{ $product->name }}" text="{{ $product->price." zł" }}"></product-card>
+                </div>
+            @endforeach
+        </div>
     </div>
 </div>
 

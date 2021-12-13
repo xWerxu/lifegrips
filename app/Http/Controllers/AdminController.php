@@ -20,7 +20,7 @@ class AdminController extends Controller
         ->count();
         $all_orders = Order::all()->count();
 
-        $last_customers = User::where('role', 'customer')->orderBy('created_at')->take(5)->get();
+        $last_customers = User::where('role', 'customer')->orderBy('created_at', 'desc')->take(5)->get();
 
 
         return view('admin.panel', [

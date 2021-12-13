@@ -18,6 +18,7 @@
                         >
                             <h2>{{ data.title }}</h2>
                             <h4>{{ data.short_description }}</h4>
+                            <p class="small"><a class="link" :href="'/wpis/' + data.id">Czytaj dalej</a></p>
                         </div>
                         <div class="col justify-content-end pt-4">
                             <img :src="data.image" />
@@ -40,6 +41,7 @@
                         >
                             <h2>{{ data.title }}</h2>
                             <h4>{{ data.short_description }}</h4>
+                            <p class="small"><a class="link" :href="'/wpis/' + data.id">Czytaj dalej</a></p>
                         </div>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
                 <div class="row d-flex justify-content-evenly">
                     <div v-for="product in data.products" style="width: 268px">
                         <product-card
-                            :product_id="product['main_variant'].product_id"
+                            :product_id="product['main_variant'].id"
                             :img_src="product['main_variant'].main_image"
                             :title="product['main_variant'].name"
                             :text="product['main_variant'].price"
