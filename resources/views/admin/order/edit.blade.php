@@ -48,6 +48,11 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        @error('item.*')
+                        <div class="alert alert-danger">
+                            Ilość zamówionych przedmiotów nie może być mniejsza od 1
+                        </div>
+                        @enderror
                     </table>
                     <h1 class="float-end"><span class="display-6">Łączna kwota zamówienia:</span> <span class="text-primary">{{ $order->total_price }} zł</span></h1>
                 </div>

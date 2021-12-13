@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MakeOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
 use App\Mail\OrderCancelled;
 use App\Mail\OrderConfirmed;
 use App\Mail\OrderSent;
@@ -201,7 +202,7 @@ class OrderController extends Controller
             ]);
         }
 
-        public function update(Request $request, $id){
+        public function update(UpdateOrderRequest $request, $id){
             $order = Order::findOrFail($id);
             if (isset($request->action) && $request->action == "cancel"){
                 $cart = $order->cart;

@@ -42,16 +42,19 @@
             {{ $product->description }}
         </div>
     </div>
-    <h2 class="display-4 mt-5">Wszystkie warianty tego produktu</h2>
-    <div class="col-12">
-        <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
-            @foreach($product->variants as $sub_variant)
-                <div class="col">
-                    <product-card product_id="{{ $sub_variant->id }}" img_src="{{ $sub_variant->main_image }}" title="{{ $sub_variant->name }}" text="{{ $sub_variant->price." zł" }}"></product-card>
-                </div>
-            @endforeach
+    @if (count($product->variants) > 1)
+        <h2 class="display-4 mt-5">Wszystkie warianty tego produktu</h2>
+        <div class="col-12">
+            <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
+                @foreach($product->variants as $sub_variant)
+                    <div class="col">
+                        <product-card product_id="{{ $sub_variant->id }}" img_src="{{ $sub_variant->main_image }}" title="{{ $sub_variant->name }}" text="{{ $sub_variant->price." zł" }}"></product-card>
+                    </div>
+                @endforeach
+            </div>
         </div>
-    </div>
+    @endif
+    
 </div>
 
 
