@@ -112,7 +112,7 @@
                                 <td scope="row">{{ $customer->id }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>
-                                    @if ($customer->verified_at)
+                                    @if ($customer->email_verified_at)
                                     <span class="badge rounded-pill bg-success"><i class="bi bi-check-lg me-2"></i>Tak</span>
                                     @else
                                     <span class="badge rounded-pill bg-danger"><i class="bi bi-x-lg me-2"></i>Nie</span>
