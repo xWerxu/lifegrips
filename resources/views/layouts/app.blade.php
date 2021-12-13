@@ -24,11 +24,9 @@
 
 <body>
     <div id="app">
-        <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <main-navbar></main-navbar>
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Lifegrips') }}
-                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -36,7 +34,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    Left Side Of Navbar
                     <ul class="navbar-nav me-auto">
                         <a class="nav-link" href="{{ route('shop') }}">Sklep</a>
                         <li class="nav-item dropdown">
@@ -44,22 +41,38 @@
                             </a>
                             <div class="dropdown-menu" style="width: 300px" aria-labelledby="navbarDropdownMenuLink">
                                 <ul class="list-group list-group-root well">
-                                    {{-- @foreach ($categories as $category)
+                                    @foreach ($categories as $category)
                                         <li class="list-group-item">{{ $category->name }}</li>
                                         <ul class="list-group">
                                         @foreach ($category->childrenCategories as $childCategory)
                                             @include('child_category', ['child_category' => $childCategory])
                                         @endforeach
                                         </ul>
-                                    @endforeach --}}
+                                    @endforeach
                                 </ul>
                             </div>
                         </li>
                     </ul>
-
-                    Right Side Of Navbar
                     <ul class="navbar-nav ms-auto">
-                        Authentication Links
+                        <li class="nav-item me-3">
+                            <form
+                                action="/sklep"
+                                class="d-flex flex-row-reverse mb-2 float-end"
+                                method="get"
+                            >
+                                <button class="btn btn-outline-success" type="submit">
+                                    <i class="me-2 bi bi-search"></i>
+                                </button>
+                                <input
+                                    class="form-control me-2"
+                                    type="search"
+                                    name="q"
+                                    placeholder="Nazwa produktu"
+                                    aria-label="Search"
+                                />
+                            </form>
+                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cart') }}">Koszyk</a>
                         </li>
@@ -83,7 +96,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    @if( Auth::user()->role == 'admin' )
+                                    @if( Auth::user()->role == 'admin' || Auth::user()->role == 'employee')
                                     <li>
                                         <a class="dropdown-item" href="{{ route('admin.panel') }}">
                                             {{ __('Zarządzaj') }}
@@ -112,9 +125,8 @@
                     </ul>
                 </div>
             </div>
-        </nav> -->
-    <main-navbar></main-navbar>
-    <sub-nav data="" ></sub-nav>
+        </nav>
+    {{-- <sub-nav data="" ></sub-nav> --}}
 
         <main>
             @yield('content')

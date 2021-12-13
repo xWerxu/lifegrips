@@ -4,7 +4,7 @@
             <li>
                 <a class="navbar-brand" href="/">Lifegrips</a>
             </li>
-            <li class="float-end">
+            <!-- <li class="float-end">
                 <form
                     action="/sklep"
                     class="d-flex flex-row-reverse mb-2 float-end"
@@ -31,7 +31,7 @@
                         <i class="bi bi-person-fill"></i>
                     </button>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </nav>
 </template>
