@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-3">
-            <img class="side_image mr-2 mt-2" :src="image" />
+            <img class="side_image mr-2 mt-2" :src="main_image" @mouseover="updateImages(main_image)" />
             <div v-for="image in images_parsed" :key="image.image_id">
                 <img
                     class="side_image mr-2 mt-2"
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="col-9">
-            <img class="main_img" :src="main_image" />
+            <img class="main_img" :src="image" />
         </div>
     </div>
 </template>
@@ -21,13 +21,10 @@
 export default {
     data() {
         return {
-            image: this.manage_image
+            image: this.main_image
         };
     },
     props: ["side_images", "main_image"],
-    mounted() {
-        console.log(this.main_image);
-    },
     computed: {
         images_parsed() {
             return JSON.parse(this.side_images);
@@ -36,7 +33,6 @@ export default {
     methods: {
         updateImages(img_src) {
             this.image = img_src
-            console.log(this.image);
         }
     },
 };
