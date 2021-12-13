@@ -27,8 +27,8 @@ class ProductController extends Controller
         $pages = ceil($max/$limit);
         $limits = [10, 25, 50];
 
-        $variants = Variant::where('name', 'like', '%'.$search.'%')->skip(($page - 1) * $limit)->take($limit)->pluck('id')->toArray();
-        $products = Product::whereIn('main_variant', $variants)->get();
+        $variants = Variant::where('name', 'like', '%'.$search.'%')->pluck('id')->toArray();
+        $products = Product::whereIn('main_variant', $variants)->skip(($page - 1) * $limit)->take($limit)->get();
 
         return view('admin.products.index', [
             'products' => $products,
