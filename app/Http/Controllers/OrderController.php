@@ -42,7 +42,7 @@ class OrderController extends Controller
                 $total_price += $item['quantity'] * $item['price'];
             }
             if ($tmp != null){
-                $coupon = Coupon::where('coupon', $tmp);
+                $coupon = Coupon::where('coupon', $tmp)->first();
                 if ($coupon != null){
                     $free_shipment = $coupon->shipment;
                 }
@@ -78,7 +78,7 @@ class OrderController extends Controller
         if ($cart == null){
             $cart = new Cart();
             $tmp = $request->session()->get('coupon');
-            $coupon = Coupon::where('coupon', $tmp);
+            $coupon = Coupon::where('coupon', $tmp)->first();
             if ($coupon != null){
                 $cart->coupon_id = $coupon->id;
             }
